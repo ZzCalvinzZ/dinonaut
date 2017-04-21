@@ -1,5 +1,6 @@
 import {getImage, renderStage, stage} from 'main/utils';
 import Loader from 'main/loader';
+import KeyboardInput from 'main/controls';
 
 class Game {
 
