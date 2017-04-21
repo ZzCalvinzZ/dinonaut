@@ -1,31 +1,24 @@
-import {getImage} from 'main/utils';
+import {getImage, renderStage, stage} from 'main/utils';
+import Loader from 'main/loader';
 
 class Game {
-	canvasWrapper = 'root';
-	stage = new PIXI.Container();
-	renderer = PIXI.autoDetectRenderer(
-		800, 600,
-		{
-			antialias: false,
-			transparent: false,
-			resolution: 1,
-			autoResize: true,
-		}
-	);
 
 	constructor() {
-		this.setStage();
+		renderStage();
+		this.loadScreen = new Loader();
 		this.loadAssets();
 	}
 
-	render() {
-		this.renderer.render(this.stage);
-
-	}
-
-	setStage(){
-		document.getElementById(this.canvasWrapper).appendChild(this.renderer.view);
-		this.render();
+	loadAssets() {
+		PIXI.loader
+			.add([
+				getImage('farsa.png'),
+				getImage('big.jpg'),
+				getImage('bigg.jpg'),
+				getImage('biggg.jpg'),
+			])
+			.on("progress", this.loadScreen.loadProgress.bind(this.loadScreen))
+			.load(this.setupGame.bind(this));
 	}
 
 	setupGame() {
@@ -33,14 +26,15 @@ class Game {
 			PIXI.loader.resources[getImage('farsa.png')].texture
 		);
 
-		this.stage.addChild(this.sprite);
-		this.render();
+		stage.removeChild(this.loadScreen.scene);
+		stage.addChild(this.sprite);
+		renderStage();
+		this.gameLoop();
 	}
 
-	loadAssets() {
-		PIXI.loader
-			.add(getImage('farsa.png'))
-			.load(this.setupGame.bind(this));
+	gameLoop(){
+		requestAnimationFrame(this.gameLoop.bind(this))
+		renderStage()
 	}
 }
 
