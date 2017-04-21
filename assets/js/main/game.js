@@ -1,4 +1,8 @@
+import {getImage} from 'main/utils';
+
 class Game {
+	canvasWrapper = 'root';
+	stage = new PIXI.Container();
 	renderer = PIXI.autoDetectRenderer(
 		800, 600,
 		{
@@ -11,18 +15,32 @@ class Game {
 
 	constructor() {
 		this.setStage();
+		this.loadAssets();
+	}
+
+	render() {
+		this.renderer.render(this.stage);
+
 	}
 
 	setStage(){
-		//Add the canvas to the HTML document
-		document.getElementById('root').appendChild(this.renderer.view);
+		document.getElementById(this.canvasWrapper).appendChild(this.renderer.view);
+		this.render();
+	}
 
-		//Create a container object called the `stage`
-		var stage = new PIXI.Container();
+	setupGame() {
+		this.sprite = new PIXI.Sprite(
+			PIXI.loader.resources[getImage('farsa.png')].texture
+		);
 
-		//Tell the `renderer` to `render` the `stage`
-		this.renderer.render(stage);
+		this.stage.addChild(this.sprite);
+		this.render();
+	}
 
+	loadAssets() {
+		PIXI.loader
+			.add(getImage('farsa.png'))
+			.load(this.setupGame.bind(this));
 	}
 }
 
