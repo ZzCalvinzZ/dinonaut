@@ -1,4 +1,7 @@
-var renderer = PIXI.autoDetectRenderer(256, 256);
+var renderer = PIXI.autoDetectRenderer(
+	800, 600,
+	{antialias: false, transparent: false, resolution: 1}
+);
 
 //Add the canvas to the HTML document
 document.body.appendChild(renderer.view);
