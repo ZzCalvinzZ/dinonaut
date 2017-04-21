@@ -66,7 +66,7 @@ module.exports = modulePaths => ({
         modules: [
             'node_modules',
             path.resolve(__dirname, 'assets/js/'),
-            path.resolve(__dirname, 'assets/style/'),
+            path.resolve(__dirname, 'assets/css/'),
         ],
         extensions: ['*', '.js', '.scss', 'css'],
     },
