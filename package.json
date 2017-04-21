@@ -1,0 +1,36 @@
+{
+  "name": "ld38",
+  "version": "0.0.1",
+  "description": "ludum dare 38 jam",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --port 20069 --inline"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZzCalvinzZ/ld38.git"
+  },
+  "author": "Calvin Collins & Heather Collins",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.5.2",
+    "postcss-loader": "^1.3.3",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1"
+  },
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "css-loader": "^0.27.3",
+    "expose-loader": "^0.7.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "webpack": "^2.3.3",
+    "webpack-bundle-tracker": "^0.2.0",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
