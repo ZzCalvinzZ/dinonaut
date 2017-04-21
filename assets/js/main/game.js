@@ -1,6 +1,7 @@
-import {getImage, renderStage, stage} from 'main/utils';
+import {getImage, getSound, renderStage, stage} from 'main/utils';
 import Loader from 'main/loader';
 import KeyboardInput from 'main/controls';
+import audio from 'pixi-audio';
 
 class Game {
 
@@ -12,20 +13,19 @@ class Game {
 
 	loadAssets() {
 		PIXI.loader
-			.add([
-				getImage('farsa.png'),
-				getImage('big.jpg'),
-				getImage('bigg.jpg'),
-				getImage('biggg.jpg'),
-			])
+			.add('farsa', getImage('farsa.png'))
+			.add('track', getSound('ludumdaretrack.mp3'))
 			.on("progress", this.loadScreen.loadProgress.bind(this.loadScreen))
 			.load(this.setupGame.bind(this));
 	}
 
 	setupGame() {
 		this.sprite = new PIXI.Sprite(
-			PIXI.loader.resources[getImage('farsa.png')].texture
+			PIXI.loader.resources.farsa.texture
 		);
+
+		this.track = PIXI.audioManager.getAudio('track');
+		this.track.play();
 
 		stage.removeChild(this.loadScreen.scene);
 		stage.addChild(this.sprite);

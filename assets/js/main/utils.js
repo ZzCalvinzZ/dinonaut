@@ -14,6 +14,7 @@ document.getElementById(canvasWrapper).appendChild(renderer.view);
 
 module.exports = {
 	getImage: filename => `static/img/${filename}`,
+	getSound: filename => `static/sound/${filename}`,
 	stage: stage,
 	renderStage: () => renderer.render(stage)
 };
