@@ -1,7 +1,6 @@
 import {soundPath, imagePath, renderStage, stage, textures, sounds} from 'main/utils';
 import Loader from 'main/scenes/loader';
 import KeyboardInput from 'main/controls';
-import audio from 'pixi-audio';
 import MainScene from 'main/scenes/main';
 
 class Game {
@@ -10,6 +9,7 @@ class Game {
 		['player', 'player.png'],
 		['planet', 'planet.png'],
 		['meteor', 'meteor.png'],
+		['background', 'background.png'],
 	]
 
 	sounds = [
@@ -47,7 +47,9 @@ class Game {
 
 	setSounds() {
 		for (let [sound, file] of this.sounds) {
-			sounds[sound] = new PIXI.Sprite(PIXI.loader.resources[sound].texture);
+			sounds[sound] = new Howl({
+				src: [file]
+			});;
 		}
 	}
 

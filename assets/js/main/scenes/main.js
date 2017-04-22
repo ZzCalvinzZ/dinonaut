@@ -2,7 +2,7 @@ import {CANVAS, renderStage, stage, toRadians} from 'main/utils';
 import Planet from 'main/objects/planet';
 import Player from 'main/objects/player';
 import Meteor from 'main/objects/meteor';
-
+import BackgroundScene from 'main/scenes/background';
 
 class MainScene {
 	scene = new PIXI.Container();
@@ -12,6 +12,8 @@ class MainScene {
 	}
 
 	setScene() {
+		this.background = new BackgroundScene();
+
 		this.planet = new Planet({
 			scene: this.scene,
 			x: CANVAS.x/2,
@@ -29,7 +31,7 @@ class MainScene {
 			//scene: this.scene,
 		//});
 
-		this.objects = [this.planet, this.player];
+		this.objects = [this.background, this.planet, this.player];
 
 		stage.addChild(this.scene);
 	}
