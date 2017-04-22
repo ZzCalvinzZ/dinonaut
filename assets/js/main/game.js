@@ -56,7 +56,7 @@ class Game {
 
 		stage.removeChild(this.loadScreen.scene);
 
-		this.mainScene = new MainScene();
+		this.currentScene = new MainScene();
 		
 		renderStage();
 		this.gameLoop();
@@ -64,6 +64,7 @@ class Game {
 
 	gameLoop(){
 		requestAnimationFrame(this.gameLoop.bind(this))
+		this.currentScene.gameLoop();
 		renderStage()
 	}
 }

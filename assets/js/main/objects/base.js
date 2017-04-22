@@ -1,7 +1,7 @@
 import {renderStage, stage} from 'main/utils';
+import KeyboardInput from 'main/controls';
 
 class BaseObject {
-
 	get texture() {
 		throw 'unimplemented';
 	}
@@ -13,6 +13,11 @@ class BaseObject {
 	setPosition(x, y) {
 		this.x = x;
 		this.y = y;
+
+		if (this.sprite) {
+			this.sprite.x = x;
+			this.sprite.y = y;
+		}
 	}
 
 	createSprite() {
@@ -27,10 +32,20 @@ class BaseObject {
 			x: this.x + this.width / 2,
 			y: this.y + this.height / 2,
 		}
+
+		this.addSprite();
+	}
+
+	gameLoop() {
+		return;
 	}
 
 	addSprite() {
 		this.scene.addChild(this.sprite);
+	}
+
+	getInput(control) {
+		return new KeyboardInput(control);
 	}
 }
 

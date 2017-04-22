@@ -43,6 +43,10 @@ let getSound = name => {
 
 };
 
+let toRadians = (angle) => {
+	return angle * (Math.PI / 180);
+}
+
 module.exports = {
 	imagePath: filename => `static/img/${filename}`,
 	soundPath: filename => `static/sound/${filename}`,
@@ -52,5 +56,6 @@ module.exports = {
 	getSound: getSound,
 	sounds: sounds,
 	CANVAS: CANVAS,
-	renderStage: () => renderer.render(stage)
+	renderStage: () => renderer.render(stage),
+	toRadians: toRadians
 };
