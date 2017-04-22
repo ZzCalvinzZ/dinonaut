@@ -7,7 +7,7 @@ import MainScene from 'main/scenes/main';
 class Game {
 
 	images = [
-		['farsa', 'farsa.png'],
+		['player', 'player.png'],
 		['planet', 'planet.png'],
 	]
 

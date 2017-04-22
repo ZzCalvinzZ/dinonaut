@@ -6,18 +6,14 @@ class Planet extends BaseObject {
 		return getTexture('planet');
 	}
 
-	constructor(options) {
+	constructor({x=0, y=0, radius=100, scene=null}) {
+		super(scene);
 		//position based on center of the planet instead of top left
-		options.radius = options.radius || 100;
-		options.x = options.x - options.radius;
-		options.y = options.y - options.radius;
+		this.setPosition(x - radius, y - radius);
 
-		super(options)
-
-		this.radius = options.radius;
-
+		this.createSprite();
 		this.sprite.hitArea = new PIXI.Circle(this.x, this.y, this.radius);
-
+		this.addSprite();
 	}
 
 

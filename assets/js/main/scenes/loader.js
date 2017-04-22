@@ -1,4 +1,3 @@
-import {renderer} from 'main/utils';
 import {renderStage, stage} from 'main/utils';
 
 class Loader {
