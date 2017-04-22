@@ -1,44 +1,38 @@
 import BaseObject from 'main/objects/base';
-import {getTexture} from 'main/utils';
+import {getTexture, toRadians} from 'main/utils';
 
 class Player extends BaseObject {
 	setControls() {
-		this.left = this.getInput({
-			key: 'left',
-			onPress: this.moveLeft,
-		});
-
-		this.right = this.getInput({
-			key: 'right',
-			onPress: this.moveRight,
-		});
+		this.left = this.getInput({key:'left'});
+		this.right = this.getInput({key:'right'});
 	}
 
 	get texture() {
 		return getTexture('player');
 	}
 
-	constructor({x=0, y=0, scene=null}) {
+	constructor({x=0, y=0, scene=null, angle=null, rotation=0}) {
 		super(scene);
 
+		this.angle = angle;
+		this.rotation = rotation;
 		this.setControls();
 
-		this.setPosition(x, y);
-
 		this.createSprite();
+		this.setPosition(x, y);
 	}
 
 	//position based on bottom middle of feet
 	setPosition(x, y) {
-		super.setPosition(x - this.texture.width / 2, y - this.texture.height);
-	}
+		let x2 = parseInt(this.texture.width / 2);
+		let y2 = this.texture.height;
 
-	moveLeft() {
-		console.log('left');
-	}
+		this.sprite.rotation = toRadians(this.rotation);
 
-	moveRight() {
-		console.log('right');
+		this.sprite.pivot.x = x2;
+		this.sprite.pivot.y = y2;
+
+		super.setPosition(x, y);
 	}
 
 }

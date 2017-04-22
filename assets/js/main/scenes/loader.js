@@ -26,7 +26,7 @@ class Loader {
 	}
 
 	loadProgress(loader, resource) {
-		this.text.text = this.progressText(loader.progress);
+		this.text.text = this.progressText(parseInt(loader.progress));
 		renderStage();
 	}
 

@@ -143,10 +143,8 @@ let keyboard = function(keyCode) {
 //			onRelease: () => console.log('left'),
 //		})
 class KeyboardInput {
-	constructor({key=null, onPress=null, onRelease=()=>{}}) {
-		if (!onPress) {
-			throw 'need to pass in onPress';
-		} else if (!keys[key]){
+	constructor({key=null, onPress=()=>{}, onRelease=()=>{}}) {
+		if (!keys[key]){
 			throw 'key does not exist';
 		}
 

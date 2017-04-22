@@ -17,22 +17,19 @@ class BaseObject {
 		if (this.sprite) {
 			this.sprite.x = x;
 			this.sprite.y = y;
+
+			this.center = {
+				x: x + this.width / 2,
+				y: y + this.height / 2,
+			}
 		}
 	}
 
 	createSprite() {
+		this.width = this.texture.width;
+		this.height = this.texture.height;
+
 		this.sprite = new PIXI.Sprite(this.texture);
-		this.sprite.x = this.x;
-		this.sprite.y = this.y;
-
-		this.width = this.sprite.width;
-		this.height = this.sprite.height;
-
-		this.center = {
-			x: this.x + this.width / 2,
-			y: this.y + this.height / 2,
-		}
-
 		this.addSprite();
 	}
 
