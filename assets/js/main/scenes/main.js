@@ -36,15 +36,16 @@ class MainScene {
 
 	handlePlayerPosition() {
 		let posChange = null;
+		let i = 2
 
 		if (this.player.left.isDown) {
-			this.player.angle -= 1;
-			this.player.rotation -= 1;
+			this.player.angle -= i;
+			this.player.rotation -= i;
 			posChange = true;
 
 		} else if (this.player.right.isDown) {
-			this.player.angle += 1;
-			this.player.rotation += 1;
+			this.player.angle += i;
+			this.player.rotation += i;
 			posChange = true;
 
 		}
