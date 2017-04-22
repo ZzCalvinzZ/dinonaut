@@ -1,12 +1,14 @@
-import {getImage, getSound, renderStage, stage} from 'main/utils';
-import Loader from 'main/loader';
+import {soundPath, imagePath, renderStage, stage, textures, sounds} from 'main/utils';
+import Loader from 'main/scenes/loader';
 import KeyboardInput from 'main/controls';
 import audio from 'pixi-audio';
+import MainScene from 'main/scenes/main';
 
 class Game {
 
 	images = [
 		['farsa', 'farsa.png'],
+		['planet', 'planet.png'],
 	]
 
 	sounds = [
@@ -23,11 +25,11 @@ class Game {
 		let loader = PIXI.loader
 
 		for (let [img, file] of this.images) {
-			loader.add(img, getImage(file))
+			loader.add(img, imagePath(file))
 		}
 
 		for (let [sound, file] of this.sounds) {
-			loader.add(sound, getSound(file))
+			loader.add(sound, soundPath(file))
 		}
 
 		loader
@@ -36,26 +38,26 @@ class Game {
 
 	}
 
-	setSprites() {
+	setTextures() {
 		for (let [img, file] of this.images) {
-			this[img] = new PIXI.Sprite(PIXI.loader.resources[img].texture);
+			textures[img] = PIXI.loader.resources[img].texture;
 		}
 	}
 
 	setSounds() {
 		for (let [sound, file] of this.sounds) {
-			this[sound] = new PIXI.Sprite(PIXI.loader.resources[sound].texture);
+			sounds[sound] = new PIXI.Sprite(PIXI.loader.resources[sound].texture);
 		}
 	}
 
 	setupGame() {
 
-		this.setSprites();
-		this.track = PIXI.audioManager.getAudio('track');
-		this.track.play();
+		this.setTextures();
 
 		stage.removeChild(this.loadScreen.scene);
-		stage.addChild(this.farsa);
+
+		this.mainScene = new MainScene();
+		
 		renderStage();
 		this.gameLoop();
 	}
