@@ -14,6 +14,12 @@ class Player extends BaseObject {
 	constructor({x=0, y=0, scene=null, angle=null, rotation=0}) {
 		super(scene);
 
+		//pivot based on bottom middle of feet
+		this.pivot = {
+			x: parseInt(this.texture.width / 2),
+			y: this.texture.height,
+		}
+
 		this.angle = angle;
 		this.rotation = rotation;
 		this.setControls();
@@ -22,15 +28,8 @@ class Player extends BaseObject {
 		this.setPosition(x, y);
 	}
 
-	//position based on bottom middle of feet
 	setPosition(x, y) {
-		let x2 = parseInt(this.texture.width / 2);
-		let y2 = this.texture.height;
-
 		this.sprite.rotation = toRadians(this.rotation);
-
-		this.sprite.pivot.x = x2;
-		this.sprite.pivot.y = y2;
 
 		super.setPosition(x, y);
 	}

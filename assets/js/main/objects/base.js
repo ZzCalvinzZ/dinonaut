@@ -25,11 +25,16 @@ class BaseObject {
 		}
 	}
 
-	createSprite() {
+	createSprite(pivot) {
 		this.width = this.texture.width;
 		this.height = this.texture.height;
 
 		this.sprite = new PIXI.Sprite(this.texture);
+
+		if (this.pivot) {
+			this.sprite.pivot.x = this.pivot.x;
+			this.sprite.pivot.y = this.pivot.y;
+		}
 		this.addSprite();
 	}
 
