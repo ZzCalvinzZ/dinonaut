@@ -2,8 +2,10 @@ import BaseObject from 'main/objects/base';
 import {getTexture} from 'main/utils';
 
 class Planet extends BaseObject {
+	name = 'planet';
+
 	get texture() {
-		return getTexture('planet');
+		return getTexture(this.name);
 	}
 
 	constructor({x=0, y=0, radius=100, scene=null}) {

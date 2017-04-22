@@ -9,7 +9,7 @@ class Game {
 		['player', 'player.png'],
 		['planet', 'planet.png'],
 		['meteor', 'meteor.png'],
-		['background', 'background.png'],
+		['background', 'background/background.json'],
 	]
 
 	sounds = [

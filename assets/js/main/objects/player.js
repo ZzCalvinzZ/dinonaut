@@ -2,13 +2,15 @@ import BaseObject from 'main/objects/base';
 import {getTexture, toRadians} from 'main/utils';
 
 class Player extends BaseObject {
+	name = 'player';
+
 	setControls() {
 		this.left = this.getInput({key:'left'});
 		this.right = this.getInput({key:'right'});
 	}
 
 	get texture() {
-		return getTexture('player');
+		return getTexture(this.name);
 	}
 
 	constructor({x=0, y=0, scene=null, angle=null, rotation=0}) {

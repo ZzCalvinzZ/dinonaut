@@ -36,26 +36,21 @@ class BaseObject {
 		this.addSprite();
 	}
 
-	createAnimatedSprite({pivot=null, width=0, height=0, NumOfSheets=0}) {
+	createAnimatedSprite({pivot=null, numOfSheets=0, speed=1}) {
 
-		let textureArray = [];
-		let count = 0
+		let frames = [];
 
-		for (let j = 0; j < this.texture.height; j+=height) {
-			for (let i = 0; i < this.texture.width; i+=width) {
-				let textureSection = new PIXI.Rectangle({x: i, y: j, width: width, height: height});
-
-				textureArray.push(this.texture, textureSection);
-				count += 1;
-				if (count >= NumOfSheets) break;
-			}
-			if (count >= NumOfSheets) break;
+		for (let i = 0; i < numOfSheets; i++) {
+			frames.push(PIXI.Texture.fromFrame(`${this.name}${i}.png`));
 		}
 
-		this.width = textureArray[0].width;
-		this.height = textureArray[0].height;
 
-		this.sprite = new PIXI.extras.AnimatedSprite(textureArray);
+		this.width = frames[0].width;
+		this.height = frames[0].height;
+
+		this.sprite = new PIXI.extras.AnimatedSprite(frames);
+		this.sprite.animationSpeed = speed;
+		this.sprite.play();
 
 		this.setPivot(this.pivot, this.pivot);
 		this.addSprite();

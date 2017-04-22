@@ -2,8 +2,9 @@ import BaseObject from 'main/objects/base';
 import {getTexture} from 'main/utils';
 
 class Background extends BaseObject {
+	name = 'background';
 	get texture() {
-		return getTexture('background');
+		return getTexture(this.name);
 	}
 
 	constructor({x=0, y=0, scene=null}) {
@@ -11,9 +12,8 @@ class Background extends BaseObject {
 		this.setPosition(x, y);
 
 		this.createAnimatedSprite({
-			NumOfSheets: 63,
-			width: 800,
-			height: 800,
+			numOfSheets: 63,
+			speed: 0.3,
 		});
 	}
 }
