@@ -73,11 +73,19 @@ class MainScene {
 	handleMeteors() {
 
 		if (this.shouldFireMeteor()) {
-			console.log('fire');
+
+			this.meteors.push(new Meteor({
+				scene: this.scene,
+				planet: this.planet,
+			}));
+
 			this.setNewMeteorInterval();
 		} else {
 			this.timeSinceLastMeteor++;
-			console.log(this.timeSinceLastMeteor);
+		}
+
+		for (let meteor of this.meteors) {
+			meteor.gameLoop();
 		}
 
 	}

@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import BaseObject from 'main/objects/base';
 import {getTexture, CANVAS, getRandomPointOnPerimeter} from 'main/utils';
 
@@ -6,7 +7,7 @@ class Meteor extends BaseObject {
 		return getTexture('meteor');
 	}
 
-	constructor({x=50, y=50, scene=null}) {
+	constructor({x=0, y=0, scene=null, planet=null}) {
 		super(scene);
 
 		//pivot based on bottom middle of feet
@@ -19,9 +20,37 @@ class Meteor extends BaseObject {
 
 		this.createSprite();
 		this.setPosition(x, y);
+
+		this.trajectory = this.calculateTrajectory(planet);
 	}
+
+	calculateTrajectory(planet) {
+		let speedFactor = Math.random() * (0.005 - 0.002) + 0.005;
+
+		let x1 = this.x;
+		let y1 = this.y;
+
+		let x2 = _.random(planet.x);
+		let y2 = _.random(planet.y);
+
+		let xt = x2 - x1;
+		let yt = y2 - y1;
+
+		return {
+			x: Math.ceil(speedFactor * xt),
+			y: Math.ceil(speedFactor * yt),
+		}
+	}
+
 	getStartPosition() {
 		return getRandomPointOnPerimeter();
+	}
+
+	gameLoop() {
+		let newX = this.x + this.trajectory.x;
+		let newY = this.y + this.trajectory.y;
+		this.setPosition(newX, newY);
+
 	}
 }
 
