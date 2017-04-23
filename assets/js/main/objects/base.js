@@ -2,10 +2,6 @@ import {renderStage, stage} from 'main/utils';
 import KeyboardInput from 'main/controls';
 
 class BaseObject {
-	get texture() {
-		throw 'unimplemented';
-	}
-
 	constructor(scene) {
 		this.scene = scene;
 	}
@@ -25,7 +21,11 @@ class BaseObject {
 		}
 	}
 
-	createSprite(pivot) {
+	createSprite() {
+		if (this.sprite) {
+			this.scene.removeChild(this.sprite);
+		}
+
 		this.width = this.texture.width;
 		this.height = this.texture.height;
 
@@ -36,12 +36,15 @@ class BaseObject {
 		this.addSprite();
 	}
 
-	createAnimatedSprite({pivot=null, numOfSheets=0, speed=1}) {
+	createAnimatedSprite({numOfSheets=0, speed=1, loop=true, name=null}) {
+		if (this.sprite) {
+			this.scene.removeChild(this.sprite);
+		}
 
 		let frames = [];
 
 		for (let i = 0; i < numOfSheets; i++) {
-			frames.push(PIXI.Texture.fromFrame(`${this.name}${i}.png`));
+			frames.push(PIXI.Texture.fromFrame(`${name}${i}.png`));
 		}
 
 
@@ -50,6 +53,7 @@ class BaseObject {
 
 		this.sprite = new PIXI.extras.AnimatedSprite(frames);
 		this.sprite.animationSpeed = speed;
+		this.sprite.loop = loop;
 		this.sprite.play();
 
 		this.setPivot(this.pivot, this.pivot);

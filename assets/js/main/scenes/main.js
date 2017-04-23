@@ -40,12 +40,12 @@ class MainScene {
 		let posChange = null;
 		let i = 2
 
-		if (this.player.left.isDown) {
+		if (this.player.left.isDown && !this.player.shielding) {
 			this.player.angle -= i;
 			this.player.rotation -= i;
 			posChange = true;
 
-		} else if (this.player.right.isDown) {
+		} else if (this.player.right.isDown && !this.player.shielding) {
 			this.player.angle += i;
 			this.player.rotation += i;
 			posChange = true;

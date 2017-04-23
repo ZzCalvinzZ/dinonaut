@@ -2,18 +2,20 @@ import {soundPath, imagePath, renderStage, stage, textures, sounds} from 'main/u
 import Loader from 'main/scenes/loader';
 import KeyboardInput from 'main/controls';
 import MainScene from 'main/scenes/main';
+import { Howl } from 'howler';
 
 class Game {
 
 	images = [
-		['player', 'player.png'],
+		['dinonaut', 'dinonaut.png'],
 		['planet', 'planet.png'],
 		['meteor', 'meteor.png'],
 		['background', 'background/background.json'],
+		['dinonautshield', 'dinonautshield/dinonautshield.json'],
 	]
 
 	sounds = [
-		['track', 'ludumdaretrack.mp3'],
+		['dinonauttheme', 'dinonauttheme.ogg'],
 	]
 
 	constructor() {
@@ -48,7 +50,7 @@ class Game {
 	setSounds() {
 		for (let [sound, file] of this.sounds) {
 			sounds[sound] = new Howl({
-				src: [file]
+				src: [soundPath(file)]
 			});;
 		}
 	}
@@ -56,12 +58,17 @@ class Game {
 	setupGame() {
 
 		this.setTextures();
+		this.setSounds();
 
 		stage.removeChild(this.loadScreen.scene);
 
 		this.currentScene = new MainScene();
 		
 		renderStage();
+
+		sounds.dinonauttheme.loop = true;
+		sounds.dinonauttheme.play();
+
 		this.gameLoop();
 	}
 

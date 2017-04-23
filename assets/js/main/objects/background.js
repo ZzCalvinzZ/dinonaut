@@ -3,6 +3,7 @@ import {getTexture} from 'main/utils';
 
 class Background extends BaseObject {
 	name = 'background';
+
 	get texture() {
 		return getTexture(this.name);
 	}
@@ -14,6 +15,7 @@ class Background extends BaseObject {
 		this.createAnimatedSprite({
 			numOfSheets: 63,
 			speed: 0.3,
+			name: this.name
 		});
 	}
 }

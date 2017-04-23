@@ -11,7 +11,6 @@ module.exports = modulePaths => ({
     entry: {
         vendor: [
             "expose-loader?PIXI!./assets/js/vendor/pixi.min.js",
-            "expose-loader?Howl!howler",
             'webpack-dev-server/client?http://localhost:20069',
             'babel-polyfill',
             './assets/js/vendor/index',
