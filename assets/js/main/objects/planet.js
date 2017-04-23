@@ -1,7 +1,7 @@
-import {BaseObject} from 'main/objects/base';
+import {CircleBase} from 'main/objects/base';
 import {getTexture} from 'main/utils';
 
-class Planet extends BaseObject {
+class Planet extends CircleBase {
 	name = 'planet';
 
 	get texture() {

@@ -24,11 +24,6 @@ class BaseObject {
 			} else {
 				this.sprite.scale.x = 1;
 			}
-
-			this.xMin = this.setXMin();
-			this.xMax = this.setXMax();
-			this.yMin = this.setYMin();
-			this.yMax = this.setYMax();
 		}
 
 	}
@@ -80,22 +75,6 @@ class BaseObject {
 			this.sprite.pivot.x = this.pivot.x;
 			this.sprite.pivot.y = this.pivot.y;
 		}
-	}
-
-	setXMin() {
-		return this.x;
-	}
-
-	setXMax() {
-		return this.x + this.width;
-	}
-
-	setYMin() {
-		return this.y;
-	}
-
-	setYMax() {
-		return this.y + this.height;
 	}
 
 	gameLoop() {

@@ -14,10 +14,10 @@ class Meteor extends CircleBase {
 		this.radius = this.texture.width / 2;
 
 		//pivot based on bottom middle of feet
-		this.pivot = {
-			x: parseInt(this.radius),
-			y: parseInt(this.radius),
-		};
+		//this.pivot = {
+			//x: parseInt(this.radius),
+			//y: parseInt(this.radius),
+		//};
 
 		({x, y} = this.getStartPosition());
 
@@ -27,7 +27,7 @@ class Meteor extends CircleBase {
 
 		this.setPosition(x, y);
 
-		this.trajectory = this.calculateTrajectory();
+		[this.sprite.vx, this.sprite.vy] = this.calculateTrajectory();
 	}
 
 	calculateTrajectory() {
@@ -42,10 +42,7 @@ class Meteor extends CircleBase {
 		let xt = x2 - x1;
 		let yt = y2 - y1;
 
-		return {
-			x: speedFactor * xt,
-			y: speedFactor * yt,
-		}
+		return [speedFactor * xt, speedFactor * yt];
 	}
 
 	getStartPosition() {
@@ -69,18 +66,24 @@ class Meteor extends CircleBase {
 			return 'outofbounds';
 		}
 
-		if (b.hitTestCircleRectangle(this.sprite, player.sprite)) {
-			if (player.shielding) {
-				this.trajectory.x = -this.trajectory.x;
-				this.trajectory.y = -this.trajectory.y;
-			} else {
-				return 'gameover';
+		if (player.shielding) {
+			console.log(this.sprite.vx, this.sprite.vy);
+			if (b.circleRectangleCollision(this.sprite, player.sprite, true)) {
+				console.log('blah');
+				console.log(this.sprite.vx, this.sprite.vy);
+				//this.trajectory.x = -this.trajectory.x;
+				//this.trajectory.y = -this.trajectory.y;
 			}
+		} 
+
+		if (b.circleCollision(this.sprite, planet.sprite)) {
+			this.exploding = true;
+			return 'gameover';
 		}
 
-		if (!this.collision) {
-			let newX = this.x + this.trajectory.x;
-			let newY = this.y + this.trajectory.y;
+		if (!this.exploding) {
+			let newX = this.x + this.sprite.vx;
+			let newY = this.y + this.sprite.vy;
 			this.setPosition(newX, newY);
 		}
 

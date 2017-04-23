@@ -82,16 +82,6 @@ const getRandomPointOnPerimeter = () => {
 	return pos;
 }
 
-const isCollision = (r1, r2) => {
-	r1 = r1.sprite;
-	r2 = r2.sprite;
-
-	return !(r2.xMin > (r0.xMax) || 
-		(r2.xMax) < r1.xMin || 
-		r2.yMin > (r1.yMax) ||
-		(r2.yMax) < r1.yMin);
-}
-
 module.exports = {
 	imagePath: filename => `static/img/${filename}`,
 	soundPath: filename => `static/sound/${filename}`,
@@ -106,6 +96,5 @@ module.exports = {
 	getRandomPointOnPerimeter: getRandomPointOnPerimeter,
 	meteorInterval: meteorInterval,
 	meteorIntervalAcceleration: meteorIntervalAcceleration,
-	isCollision: isCollision,
 	b: b,
 };
