@@ -106,7 +106,6 @@ class MainScene {
 
 		this.handlePlayerPosition();
 		this.handleMeteors();
-		console.log(this.meteors.length);
 
 	}
 

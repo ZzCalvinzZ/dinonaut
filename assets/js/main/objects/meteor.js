@@ -1,8 +1,8 @@
 import _ from 'underscore';
-import BaseObject from 'main/objects/base';
-import {getTexture, CANVAS, getRandomPointOnPerimeter} from 'main/utils';
+import {CircleBase} from 'main/objects/base';
+import {getTexture, CANVAS, getRandomPointOnPerimeter, b} from 'main/utils';
 
-class Meteor extends BaseObject {
+class Meteor extends CircleBase {
 	get texture() {
 		return getTexture('meteor');
 	}
@@ -11,15 +11,20 @@ class Meteor extends BaseObject {
 		super(scene);
 
 		this.planet = planet;
+		this.radius = this.texture.width / 2;
+
 		//pivot based on bottom middle of feet
 		this.pivot = {
-			x: parseInt(this.texture.width / 2),
-			y: parseInt(this.texture.height / 2),
+			x: parseInt(this.radius),
+			y: parseInt(this.radius),
 		};
 
 		({x, y} = this.getStartPosition());
 
 		this.createSprite();
+
+		this.sprite.hitArea = new PIXI.Circle(this.x, this.y, this.radius);
+
 		this.setPosition(x, y);
 
 		this.trajectory = this.calculateTrajectory();
@@ -38,8 +43,8 @@ class Meteor extends BaseObject {
 		let yt = y2 - y1;
 
 		return {
-			x: Math.ceil(speedFactor * xt),
-			y: Math.ceil(speedFactor * yt),
+			x: speedFactor * xt,
+			y: speedFactor * yt,
 		}
 	}
 
@@ -62,6 +67,15 @@ class Meteor extends BaseObject {
 		if (this.isOutOfBounds()) {
 			this.removeSprite();
 			return 'outofbounds';
+		}
+
+		if (b.hitTestCircleRectangle(this.sprite, player.sprite)) {
+			if (player.shielding) {
+				this.trajectory.x = -this.trajectory.x;
+				this.trajectory.y = -this.trajectory.y;
+			} else {
+				return 'gameover';
+			}
 		}
 
 		if (!this.collision) {

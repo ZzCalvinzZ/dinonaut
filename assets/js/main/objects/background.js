@@ -1,4 +1,4 @@
-import BaseObject from 'main/objects/base';
+import {BaseObject} from 'main/objects/base';
 import {getTexture} from 'main/utils';
 
 class Background extends BaseObject {

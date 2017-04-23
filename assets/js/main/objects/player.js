@@ -1,4 +1,4 @@
-import BaseObject from 'main/objects/base';
+import {BaseObject} from 'main/objects/base';
 import {getTexture, toRadians} from 'main/utils';
 
 class Player extends BaseObject {

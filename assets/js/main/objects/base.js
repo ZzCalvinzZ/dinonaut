@@ -24,6 +24,11 @@ class BaseObject {
 			} else {
 				this.sprite.scale.x = 1;
 			}
+
+			this.xMin = this.setXMin();
+			this.xMax = this.setXMax();
+			this.yMin = this.setYMin();
+			this.yMax = this.setYMax();
 		}
 
 	}
@@ -37,6 +42,7 @@ class BaseObject {
 		this.height = this.texture.height;
 
 		this.sprite = new PIXI.Sprite(this.texture);
+		if (this.circular) this.sprite.circular = true;
 
 		this.setPivot(this.pivot, this.pivot);
 
@@ -59,6 +65,8 @@ class BaseObject {
 		this.height = frames[0].height;
 
 		this.sprite = new PIXI.extras.AnimatedSprite(frames);
+		if (this.circular) this.sprite.circular = true;
+
 		this.sprite.animationSpeed = speed;
 		this.sprite.loop = loop;
 		this.sprite.play();
@@ -72,6 +80,22 @@ class BaseObject {
 			this.sprite.pivot.x = this.pivot.x;
 			this.sprite.pivot.y = this.pivot.y;
 		}
+	}
+
+	setXMin() {
+		return this.x;
+	}
+
+	setXMax() {
+		return this.x + this.width;
+	}
+
+	setYMin() {
+		return this.y;
+	}
+
+	setYMax() {
+		return this.y + this.height;
 	}
 
 	gameLoop() {
@@ -91,4 +115,11 @@ class BaseObject {
 	}
 }
 
-module.exports = BaseObject;
+class CircleBase extends BaseObject {
+	circular = true;
+}
+
+module.exports = {
+	BaseObject: BaseObject,
+	CircleBase: CircleBase
+};

@@ -1,3 +1,7 @@
+import Bump from 'main/bump';
+
+let b = new Bump(PIXI);
+
 let canvasWrapper = 'root';
 let stage = new PIXI.Container()
 
@@ -24,18 +28,17 @@ document.getElementById(canvasWrapper).appendChild(renderer.view);
 let textures = {}
 let sounds = {}
 
-let getTexture = name => {
+const getTexture = name => {
 	let texture = textures[name];
 
-	if (texture) {
-		return texture;
+	if (texture) { return texture;
 	} else {
 		throw 'no texture with that name';
 	}
 
 };
 
-let getSound = name => {
+const getSound = name => {
 	let sound = sounds[name];
 
 	if (sound) {
@@ -46,11 +49,11 @@ let getSound = name => {
 
 };
 
-let toRadians = (angle) => {
+const toRadians = (angle) => {
 	return angle * (Math.PI / 180);
 }
 
-let getRandomPointOnPerimeter = () => {
+const getRandomPointOnPerimeter = () => {
 	let width = CANVAS.x;
 	let height = CANVAS.y;
 	let pos = {};
@@ -79,6 +82,16 @@ let getRandomPointOnPerimeter = () => {
 	return pos;
 }
 
+const isCollision = (r1, r2) => {
+	r1 = r1.sprite;
+	r2 = r2.sprite;
+
+	return !(r2.xMin > (r0.xMax) || 
+		(r2.xMax) < r1.xMin || 
+		r2.yMin > (r1.yMax) ||
+		(r2.yMax) < r1.yMin);
+}
+
 module.exports = {
 	imagePath: filename => `static/img/${filename}`,
 	soundPath: filename => `static/sound/${filename}`,
@@ -93,4 +106,6 @@ module.exports = {
 	getRandomPointOnPerimeter: getRandomPointOnPerimeter,
 	meteorInterval: meteorInterval,
 	meteorIntervalAcceleration: meteorIntervalAcceleration,
+	isCollision: isCollision,
+	b: b,
 };
