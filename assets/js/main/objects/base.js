@@ -19,6 +19,10 @@ class BaseObject {
 				y: y + this.height / 2,
 			}
 
+			// for bump to work with pivot
+			this.sprite.xAnchorOffset = this.sprite.width - this.sprite.pivot.x;
+			this.sprite.yAnchorOffset = this.sprite.height - this.sprite.pivot.y;
+
 			if (this.leftFacing) {
 				this.sprite.scale.x = -1;
 			} else {

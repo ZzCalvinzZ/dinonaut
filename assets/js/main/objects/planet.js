@@ -12,15 +12,15 @@ class Planet extends CircleBase {
 		super(scene);
 		this.radius = radius;
 
+		this.pivot = {
+			x: this.radius,
+			y: this.radius,
+		};
+
 		this.createSprite();
-		this.setPosition(x, y);
-
 		this.sprite.hitArea = new PIXI.Circle(this.x, this.y, this.radius);
-	}
-
-	//position based on center of the planet instead of top left
-	setPosition(x, y) {
-		super.setPosition(x - this.radius, y - this.radius);
+		this.setPosition(x, y);
+		console.log(this.sprite.x, this.sprite.y);
 	}
 }
 

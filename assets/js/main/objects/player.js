@@ -38,6 +38,7 @@ class Player extends BaseObject {
 		this.setControls();
 
 		this.createSprite();
+		this.sprite.hitArea = new PIXI.Circle(this.x, this.y, this.sprite.halfWidth);
 		this.setPosition(x, y);
 	}
 

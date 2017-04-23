@@ -27,8 +27,8 @@ class MainScene {
 
 		this.player = new Player({
 			scene: this.scene,
-			x: this.planet.center.x,
-			y: this.planet.y,
+			x: this.planet.x,
+			y: this.planet.y - this.planet.radius,
 			angle: 270, // in degrees
 		});
 
@@ -52,8 +52,8 @@ class MainScene {
 		}
 
 		if (posChange) {
-			let x = this.planet.center.x + this.planet.radius * Math.cos(toRadians(this.player.angle));
-			let y = this.planet.center.y + this.planet.radius * Math.sin(toRadians(this.player.angle));
+			let x = this.planet.x + this.planet.radius * Math.cos(toRadians(this.player.angle));
+			let y = this.planet.y + this.planet.radius * Math.sin(toRadians(this.player.angle));
 			this.player.setPosition(x, y);
 		};
 
@@ -88,6 +88,7 @@ class MainScene {
 			let meteorStatus = meteor.gameLoop({
 				planet: this.planet,
 				player: this.player,
+				meteors: this.meteors
 			});
 
 			if (meteorStatus === 'outofbounds') {

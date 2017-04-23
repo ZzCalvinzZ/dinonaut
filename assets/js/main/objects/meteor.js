@@ -13,11 +13,10 @@ class Meteor extends CircleBase {
 		this.planet = planet;
 		this.radius = this.texture.width / 2;
 
-		//pivot based on bottom middle of feet
-		//this.pivot = {
-			//x: parseInt(this.radius),
-			//y: parseInt(this.radius),
-		//};
+		this.pivot = {
+			x: parseInt(this.radius),
+			y: parseInt(this.radius),
+		};
 
 		({x, y} = this.getStartPosition());
 
@@ -60,25 +59,38 @@ class Meteor extends CircleBase {
 		}
 	}
 
-	gameLoop({planet=null, player=null}) {
+	explode() {
+		this.exploding = true;
+		console.log('exploding');
+
+	}
+
+	gameLoop({planet=null, player=null, meteors=null}) {
 		if (this.isOutOfBounds()) {
 			this.removeSprite();
 			return 'outofbounds';
 		}
 
 		if (player.shielding) {
-			console.log(this.sprite.vx, this.sprite.vy);
 			if (b.circleRectangleCollision(this.sprite, player.sprite, true)) {
-				console.log('blah');
-				console.log(this.sprite.vx, this.sprite.vy);
-				//this.trajectory.x = -this.trajectory.x;
-				//this.trajectory.y = -this.trajectory.y;
 			}
 		} 
 
 		if (b.circleCollision(this.sprite, planet.sprite)) {
-			this.exploding = true;
+			this.explode();
 			return 'gameover';
+		}
+
+		for (let meteor of meteors) {
+			if (meteor !== this) {
+				if (b.circleCollision(this.sprite, meteor.sprite)) {
+					this.explode();
+					meteor.explode();
+
+					return 'gameover';
+				}
+
+			}
 		}
 
 		if (!this.exploding) {
