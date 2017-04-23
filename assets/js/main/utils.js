@@ -47,6 +47,35 @@ let toRadians = (angle) => {
 	return angle * (Math.PI / 180);
 }
 
+let getRandomPointOnPerimeter = () => {
+	let width = CANVAS.x;
+	let height = CANVAS.y;
+	let pos = {};
+	
+	let p = Math.floor((Math.random() * (width + width + height + height)));
+
+	if (p < (width + height)) {
+		if ( p < width ) {
+			pos.x = p;
+			pos.y = 0;
+		} else {
+			pos.x = width;
+			pos.y = p - width;
+		}
+	} else {
+		p = p - (width + height);
+		if (p < width) {
+			pos.x = width - p;
+			pos.y = height;
+		} else {
+			pos.x = 0;
+			pos.y = height - (p - width);
+		}
+	}
+
+	return pos;
+}
+
 module.exports = {
 	imagePath: filename => `static/img/${filename}`,
 	soundPath: filename => `static/sound/${filename}`,
@@ -57,5 +86,6 @@ module.exports = {
 	sounds: sounds,
 	CANVAS: CANVAS,
 	renderStage: () => renderer.render(stage),
-	toRadians: toRadians
+	toRadians: toRadians,
+	getRandomPointOnPerimeter: getRandomPointOnPerimeter
 };

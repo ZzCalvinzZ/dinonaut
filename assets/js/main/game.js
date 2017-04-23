@@ -16,7 +16,7 @@ class Game {
 	]
 
 	sounds = [
-		['dinonauttheme', 'dinonauttheme.ogg'],
+		['dinonauttheme', 'dinonauttheme.ogg', true],
 	]
 
 	constructor() {
@@ -49,9 +49,10 @@ class Game {
 	}
 
 	setSounds() {
-		for (let [sound, file] of this.sounds) {
+		for (let [sound, file, loop] of this.sounds) {
 			sounds[sound] = new Howl({
-				src: [soundPath(file)]
+				src: [soundPath(file)],
+				loop: loop || false
 			});;
 		}
 	}
@@ -67,12 +68,7 @@ class Game {
 		
 		renderStage();
 
-		let dinonauttheme = new Howl({
-			src: [soundPath('dinonauttheme.ogg')],
-			loop: true
-		});;
-
-		dinonauttheme.play();
+		//sounds.dinonauttheme.play();
 
 		this.gameLoop();
 	}

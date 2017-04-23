@@ -27,9 +27,12 @@ class MainScene {
 			angle: 270, // in degrees
 		});
 
-		//this.meteor = new Meteor({
-			//scene: this.scene,
-		//});
+		let meteors = []
+		for (let i = 0; i<100; i++) {
+			meteors.push(new Meteor({
+				scene: this.scene,
+			}));
+		}
 
 		this.objects = [this.background, this.planet, this.player];
 
@@ -58,12 +61,17 @@ class MainScene {
 
 	}
 
+	handleMeteors() {
+
+	}
+
 	gameLoop() {
 		for (let object of this.objects) {
 			object.gameLoop();
 		}
 
 		this.handlePlayerPosition();
+		this.handleMeteors();
 
 	}
 
