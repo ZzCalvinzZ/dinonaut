@@ -6,7 +6,7 @@ let CANVAS = {
 	y: 800
 }
 
-let meteorInterval = [10, 15];
+let meteorInterval = [100, 300];
 let meteorIntervalAcceleration = 10;
 
 let renderer = PIXI.autoDetectRenderer(
