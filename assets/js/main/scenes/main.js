@@ -87,6 +87,10 @@ class MainScene {
 		this.timeSinceLastMeteor = 0;
 	}
 
+	gameOver() {
+
+	}
+
 	handleMeteors() {
 
 		if (this.shouldFireMeteor()) {
@@ -102,6 +106,7 @@ class MainScene {
 		}
 
 		let deleteMeteors = [];
+		let gameOver = false;
 
 		for (let meteor of this.meteors) {
 			let meteorStatus = meteor.gameLoop({
@@ -111,6 +116,14 @@ class MainScene {
 				deleteMeteors: deleteMeteors
 			});
 
+			if (meteorStatus === 'gameover') {
+				gameOver = true;
+			}
+
+		}
+
+		if (gameOver) {
+			return this.gameOver();
 		}
 
 		for (let meteor of deleteMeteors) {

@@ -14,8 +14,8 @@ class Meteor extends CircleBase {
 		this.radius = this.texture.width / 2;
 
 		this.pivot = {
-			x: parseInt(this.radius),
-			y: parseInt(this.radius),
+			x: this.radius,
+			y: this.radius,
 		};
 
 		({x, y} = this.getStartPosition());
@@ -71,8 +71,9 @@ class Meteor extends CircleBase {
 			return 'delete';
 		}
 
-		if (player.shielding) {
+		if (player.shielding && !this.deflected) {
 			if (b.circleCollision(this.sprite, player.sprite, true)) {
+				this.deflected = true;
 			}
 		} 
 

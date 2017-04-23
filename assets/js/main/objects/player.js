@@ -26,7 +26,7 @@ class Player extends CircleBase {
 		super(scene);
 
 		this.texture = getTexture(this.name);
-		this.radius = this.texture.width / 2;
+		this.radius = this.texture.height / 2;
 
 		//pivot based on bottom middle of feet
 		this.pivot = {
@@ -40,13 +40,13 @@ class Player extends CircleBase {
 
 		this.createSprite();
 		this.setPosition(x, y);
-		console.log(this.sprite.hitArea);
 	}
 
 	setPosition(x, y) {
 		this.sprite.rotation = toRadians(this.rotation);
-
 		super.setPosition(x, y);
+		this.sprite.radius = 40;
+
 	}
 
 	setSprite() {
