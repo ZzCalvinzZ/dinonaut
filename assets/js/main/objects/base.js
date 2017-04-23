@@ -82,6 +82,10 @@ class BaseObject {
 		this.scene.addChild(this.sprite);
 	}
 
+	removeSprite() {
+		this.scene.removeChild(this.sprite);
+	}
+
 	getInput(control) {
 		return new KeyboardInput(control);
 	}

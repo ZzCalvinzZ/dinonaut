@@ -85,7 +85,16 @@ class MainScene {
 		}
 
 		for (let meteor of this.meteors) {
-			meteor.gameLoop();
+			let meteorStatus = meteor.gameLoop({
+				planet: this.planet,
+				player: this.player,
+			});
+
+			if (meteorStatus === 'outofbounds') {
+				this.meteors.splice(this.meteors.indexOf(meteor), 1);
+			}
+
+			
 		}
 
 	}
@@ -97,6 +106,7 @@ class MainScene {
 
 		this.handlePlayerPosition();
 		this.handleMeteors();
+		console.log(this.meteors.length);
 
 	}
 

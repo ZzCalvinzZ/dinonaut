@@ -47,10 +47,28 @@ class Meteor extends BaseObject {
 		return getRandomPointOnPerimeter();
 	}
 
-	gameLoop() {
-		let newX = this.x + this.trajectory.x;
-		let newY = this.y + this.trajectory.y;
-		this.setPosition(newX, newY);
+	isOutOfBounds() {
+		if (
+			(this.x < -50) ||
+			(this.x > (CANVAS.x + 50)) ||
+			(this.y < -50) ||
+			(this.y > (CANVAS.y + 50))
+		) {
+			return true;
+		}
+	}
+
+	gameLoop({planet=null, player=null}) {
+		if (this.isOutOfBounds()) {
+			this.removeSprite();
+			return 'outofbounds';
+		}
+
+		if (!this.collision) {
+			let newX = this.x + this.trajectory.x;
+			let newY = this.y + this.trajectory.y;
+			this.setPosition(newX, newY);
+		}
 
 	}
 }
