@@ -84,6 +84,8 @@ class MainScene {
 			this.timeSinceLastMeteor++;
 		}
 
+		let deleteMeteors = [];
+
 		for (let meteor of this.meteors) {
 			let meteorStatus = meteor.gameLoop({
 				planet: this.planet,
@@ -91,11 +93,14 @@ class MainScene {
 				meteors: this.meteors
 			});
 
-			if (meteorStatus === 'outofbounds') {
-				this.meteors.splice(this.meteors.indexOf(meteor), 1);
+			if (meteorStatus === 'delete' || meteorStatus === 'gameover') {
+				deleteMeteors.push(meteor);
 			}
 
-			
+		}
+
+		for (let meteor of deleteMeteors) {
+			this.meteors.splice(this.meteors.indexOf(meteor), 1);
 		}
 
 	}

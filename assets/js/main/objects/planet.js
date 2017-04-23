@@ -18,9 +18,7 @@ class Planet extends CircleBase {
 		};
 
 		this.createSprite();
-		this.sprite.hitArea = new PIXI.Circle(this.x, this.y, this.radius);
 		this.setPosition(x, y);
-		console.log(this.sprite.x, this.sprite.y);
 	}
 }
 

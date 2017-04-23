@@ -1,7 +1,7 @@
-import {BaseObject} from 'main/objects/base';
+import {CircleBase} from 'main/objects/base';
 import {getTexture, toRadians} from 'main/utils';
 
-class Player extends BaseObject {
+class Player extends CircleBase {
 	name = 'dinonaut';
 
 	setControls() {
@@ -26,10 +26,11 @@ class Player extends BaseObject {
 		super(scene);
 
 		this.texture = getTexture(this.name);
+		this.radius = this.texture.width / 2;
 
 		//pivot based on bottom middle of feet
 		this.pivot = {
-			x: parseInt(this.texture.width / 2),
+			x: this.texture.width / 2,
 			y: this.texture.height,
 		}
 
@@ -38,8 +39,8 @@ class Player extends BaseObject {
 		this.setControls();
 
 		this.createSprite();
-		this.sprite.hitArea = new PIXI.Circle(this.x, this.y, this.sprite.halfWidth);
 		this.setPosition(x, y);
+		console.log(this.sprite.hitArea);
 	}
 
 	setPosition(x, y) {
@@ -51,7 +52,6 @@ class Player extends BaseObject {
 	setSprite() {
 		this.texture = getTexture(this.name);
 		this.createSprite();
-
 		this.setPosition(this.x, this.y);
 
 	}

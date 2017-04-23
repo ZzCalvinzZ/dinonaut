@@ -21,16 +21,13 @@ class Meteor extends CircleBase {
 		({x, y} = this.getStartPosition());
 
 		this.createSprite();
-
-		this.sprite.hitArea = new PIXI.Circle(this.x, this.y, this.radius);
-
 		this.setPosition(x, y);
 
 		[this.sprite.vx, this.sprite.vy] = this.calculateTrajectory();
 	}
 
 	calculateTrajectory() {
-		let speedFactor = Math.random() * (0.005 - 0.002) + 0.005;
+		let speedFactor = Math.random() * (0.004 - 0.002) + 0.004;
 
 		let x1 = this.x;
 		let y1 = this.y;
@@ -61,18 +58,18 @@ class Meteor extends CircleBase {
 
 	explode() {
 		this.exploding = true;
-		console.log('exploding');
+		this.removeSprite();
 
 	}
 
 	gameLoop({planet=null, player=null, meteors=null}) {
 		if (this.isOutOfBounds()) {
 			this.removeSprite();
-			return 'outofbounds';
+			return 'delete';
 		}
 
 		if (player.shielding) {
-			if (b.circleRectangleCollision(this.sprite, player.sprite, true)) {
+			if (b.circleCollision(this.sprite, player.sprite, true)) {
 			}
 		} 
 
@@ -86,8 +83,6 @@ class Meteor extends CircleBase {
 				if (b.circleCollision(this.sprite, meteor.sprite)) {
 					this.explode();
 					meteor.explode();
-
-					return 'gameover';
 				}
 
 			}
