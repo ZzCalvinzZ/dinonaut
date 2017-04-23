@@ -67,8 +67,12 @@ class Game {
 		
 		renderStage();
 
-		sounds.dinonauttheme.loop = true;
-		sounds.dinonauttheme.play();
+		let dinonauttheme = new Howl({
+			src: [soundPath('dinonauttheme.ogg')],
+			loop: true
+		});;
+
+		dinonauttheme.play();
 
 		this.gameLoop();
 	}

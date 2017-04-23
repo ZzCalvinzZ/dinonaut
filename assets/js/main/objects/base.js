@@ -18,7 +18,14 @@ class BaseObject {
 				x: x + this.width / 2,
 				y: y + this.height / 2,
 			}
+
+			if (this.leftFacing) {
+				this.sprite.scale.x = -1;
+			} else {
+				this.sprite.scale.x = 1;
+			}
 		}
+
 	}
 
 	createSprite() {

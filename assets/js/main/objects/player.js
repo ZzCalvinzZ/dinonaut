@@ -7,12 +7,12 @@ class Player extends BaseObject {
 	setControls() {
 		this.left = this.getInput({
 			key: 'left',
-			onPress: this.walk.bind(this),
+			onPress: this.walkLeft.bind(this),
 			onRelease: this.unwalk.bind(this),
 		});
 		this.right = this.getInput({
 			key: 'right',
-			onPress: this.walk.bind(this),
+			onPress: this.walkRight.bind(this),
 			onRelease: this.unwalk.bind(this),
 		});
 		this.space = this.getInput({
@@ -50,7 +50,9 @@ class Player extends BaseObject {
 	setSprite() {
 		this.texture = getTexture(this.name);
 		this.createSprite();
+
 		this.setPosition(this.x, this.y);
+
 	}
 
 	moveLeft(i) {
@@ -63,7 +65,27 @@ class Player extends BaseObject {
 		this.rotation += i;
 	}
 
+	canWalk() {
+		return !this.shielding;
+
+	}
+
+	walkLeft() {
+		if (this.canWalk()) {
+			this.leftFacing = true;
+			this.walk();
+		}
+	}
+
+	walkRight() {
+		if (this.canWalk()) {
+			this.leftFacing = false;
+			this.walk();
+		}
+	}
+
 	walk() {
+		this.walking = true;
 		this.createAnimatedSprite({
 			numOfSheets: 2,
 			speed: 0.1,
@@ -74,7 +96,9 @@ class Player extends BaseObject {
 	}
 
 	unwalk() {
-		this.setSprite();
+		if (this.canWalk()) {
+			this.setSprite();
+		}
 	}
 
 	activateShield() {
