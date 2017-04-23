@@ -1,6 +1,6 @@
 import _ from 'underscore';
 import {CircleBase} from 'main/objects/base';
-import {getTexture, CANVAS, getRandomPointOnPerimeter, b} from 'main/utils';
+import {getTexture, CANVAS, getRandomPointOnPerimeter, b, meteorSpeed} from 'main/utils';
 
 class Meteor extends CircleBase {
 	get texture() {
@@ -27,7 +27,7 @@ class Meteor extends CircleBase {
 	}
 
 	calculateTrajectory() {
-		let speedFactor = Math.random() * (0.004 - 0.002) + 0.004;
+		let speedFactor = Math.random() * (meteorSpeed[0] - meteorSpeed[1]) + meteorSpeed[0];
 
 		let x1 = this.x;
 		let y1 = this.y;
@@ -56,13 +56,16 @@ class Meteor extends CircleBase {
 		}
 	}
 
-	explode() {
+	explode(deleteMeteors) {
 		this.exploding = true;
 		this.removeSprite();
+		if (!deleteMeteors.includes(this)) {
+			deleteMeteors.push(this);
+		}
 
 	}
 
-	gameLoop({planet=null, player=null, meteors=null}) {
+	gameLoop({planet=null, player=null, meteors=null, deleteMeteors=[]}) {
 		if (this.isOutOfBounds()) {
 			this.removeSprite();
 			return 'delete';
@@ -74,15 +77,15 @@ class Meteor extends CircleBase {
 		} 
 
 		if (b.circleCollision(this.sprite, planet.sprite)) {
-			this.explode();
+			this.explode(deleteMeteors);
 			return 'gameover';
 		}
 
 		for (let meteor of meteors) {
 			if (meteor !== this) {
 				if (b.circleCollision(this.sprite, meteor.sprite)) {
-					this.explode();
-					meteor.explode();
+					this.explode(deleteMeteors);
+					meteor.explode(deleteMeteors);
 				}
 
 			}

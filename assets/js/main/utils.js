@@ -10,8 +10,11 @@ let CANVAS = {
 	y: 800
 }
 
-let meteorInterval = [100, 300];
+let meteorInterval = [50, 200];
 let meteorIntervalAcceleration = 10;
+let meteorSpeed = [0.003, 0.002];
+
+let playerSpeed = 3;
 
 let renderer = PIXI.autoDetectRenderer(
 	CANVAS.x, CANVAS.y,
@@ -96,5 +99,7 @@ module.exports = {
 	getRandomPointOnPerimeter: getRandomPointOnPerimeter,
 	meteorInterval: meteorInterval,
 	meteorIntervalAcceleration: meteorIntervalAcceleration,
+	meteorSpeed: meteorSpeed, 
+	playerSpeed: playerSpeed,
 	b: b,
 };
