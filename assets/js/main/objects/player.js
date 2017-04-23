@@ -5,8 +5,16 @@ class Player extends BaseObject {
 	name = 'dinonaut';
 
 	setControls() {
-		this.left = this.getInput({key:'left'});
-		this.right = this.getInput({key:'right'});
+		this.left = this.getInput({
+			key: 'left',
+			onPress: this.walk.bind(this),
+			onRelease: this.unwalk.bind(this),
+		});
+		this.right = this.getInput({
+			key: 'right',
+			onPress: this.walk.bind(this),
+			onRelease: this.unwalk.bind(this),
+		});
 		this.space = this.getInput({
 			key: 'space',
 			onPress: this.activateShield.bind(this),
@@ -39,10 +47,40 @@ class Player extends BaseObject {
 		super.setPosition(x, y);
 	}
 
+	setSprite() {
+		this.texture = getTexture(this.name);
+		this.createSprite();
+		this.setPosition(this.x, this.y);
+	}
+
+	moveLeft(i) {
+		this.angle -= i;
+		this.rotation -= i;
+	}
+
+	moveRight(i) {
+		this.angle += i;
+		this.rotation += i;
+	}
+
+	walk() {
+		this.createAnimatedSprite({
+			numOfSheets: 2,
+			speed: 0.1,
+			name: 'dinonautwalking'
+		});
+		this.setPosition(this.x, this.y);
+
+	}
+
+	unwalk() {
+		this.setSprite();
+	}
+
 	activateShield() {
 		this.createAnimatedSprite({
 			numOfSheets: 3,
-			speed: 0.2,
+			speed: 0.25,
 			loop: false,
 			name: 'dinonautshield'
 		});
@@ -51,9 +89,7 @@ class Player extends BaseObject {
 	}
 
 	deactivateShield() {
-		this.texture = getTexture(this.name);
-		this.createSprite();
-		this.setPosition(this.x, this.y);
+		this.setSprite();
 		this.shielding = false;
 	}
 

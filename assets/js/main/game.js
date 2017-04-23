@@ -12,6 +12,7 @@ class Game {
 		['meteor', 'meteor.png'],
 		['background', 'background/background.json'],
 		['dinonautshield', 'dinonautshield/dinonautshield.json'],
+		['dinonautwalking', 'dinonautwalking/dinonautwalking.json'],
 	]
 
 	sounds = [

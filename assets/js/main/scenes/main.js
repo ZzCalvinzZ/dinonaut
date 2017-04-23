@@ -41,13 +41,11 @@ class MainScene {
 		let i = 2
 
 		if (this.player.left.isDown && !this.player.shielding) {
-			this.player.angle -= i;
-			this.player.rotation -= i;
+			this.player.moveLeft(i);
 			posChange = true;
 
 		} else if (this.player.right.isDown && !this.player.shielding) {
-			this.player.angle += i;
-			this.player.rotation += i;
+			this.player.moveRight(i);
 			posChange = true;
 
 		}
