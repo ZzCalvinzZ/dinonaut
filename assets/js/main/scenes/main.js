@@ -1,4 +1,5 @@
-import {CANVAS, renderStage, stage, toRadians} from 'main/utils';
+import _ from 'underscore';
+import {CANVAS, renderStage, stage, toRadians, meteorInterval, meteorIntervalAcceleration} from 'main/utils';
 import Planet from 'main/objects/planet';
 import Player from 'main/objects/player';
 import Meteor from 'main/objects/meteor';
@@ -14,6 +15,10 @@ class MainScene {
 	setScene() {
 		this.background = new BackgroundScene();
 
+		//meteor stuff
+		this.meteors = [];
+		this.setNewMeteorInterval();
+
 		this.planet = new Planet({
 			scene: this.scene,
 			x: CANVAS.x/2,
@@ -26,13 +31,6 @@ class MainScene {
 			y: this.planet.y,
 			angle: 270, // in degrees
 		});
-
-		let meteors = []
-		for (let i = 0; i<100; i++) {
-			meteors.push(new Meteor({
-				scene: this.scene,
-			}));
-		}
 
 		this.objects = [this.background, this.planet, this.player];
 
@@ -61,7 +59,26 @@ class MainScene {
 
 	}
 
+	shouldFireMeteor() {
+		if (this.timeSinceLastMeteor === this.currentMeteorInterval) {
+			return true;
+		}
+	}
+
+	setNewMeteorInterval() {
+		this.currentMeteorInterval = _.random(meteorInterval[0], meteorInterval[1]);
+		this.timeSinceLastMeteor = 0;
+	}
+
 	handleMeteors() {
+
+		if (this.shouldFireMeteor()) {
+			console.log('fire');
+			this.setNewMeteorInterval();
+		} else {
+			this.timeSinceLastMeteor++;
+			console.log(this.timeSinceLastMeteor);
+		}
 
 	}
 
