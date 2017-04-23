@@ -71,27 +71,25 @@ class Player extends BaseObject {
 	}
 
 	walkLeft() {
-		if (this.canWalk()) {
-			this.leftFacing = true;
-			this.walk();
-		}
+		this.leftFacing = true;
+		this.walk();
 	}
 
 	walkRight() {
-		if (this.canWalk()) {
-			this.leftFacing = false;
-			this.walk();
-		}
+		this.leftFacing = false;
+		this.walk();
 	}
 
 	walk() {
-		this.walking = true;
-		this.createAnimatedSprite({
-			numOfSheets: 2,
-			speed: 0.1,
-			name: 'dinonautwalking'
-		});
-		this.setPosition(this.x, this.y);
+		if (this.canWalk()) {
+			this.walking = true;
+			this.createAnimatedSprite({
+				numOfSheets: 2,
+				speed: 0.1,
+				name: 'dinonautwalking'
+			});
+			this.setPosition(this.x, this.y);
+		}
 
 	}
 
@@ -115,6 +113,11 @@ class Player extends BaseObject {
 	deactivateShield() {
 		this.setSprite();
 		this.shielding = false;
+
+		// this needs to be here if you are trying to walk during shielding
+		if (this.walking) {
+			this.walk();
+		}
 	}
 
 }
