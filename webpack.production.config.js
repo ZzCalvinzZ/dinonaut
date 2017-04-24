@@ -1,73 +1,21 @@
 var path = require("path");
 var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = modulePaths => ({
-    context: __dirname,
+var config = require('./webpack.config.js');
 
-    devtool: 'source-map',
+config.output.filename = "[name].js";
+config.output.path = path.resolve(__dirname, '/assets/bundles');
+config.output.publicPath = undefined;
+config.devtool = undefined;
 
-    entry: {
-        vendor: [
-            "expose-loader?PIXI!./assets/js/vendor/pixi.min.js",
-            'webpack-dev-server/client?http://localhost:20069',
-            'babel-polyfill',
-            './assets/js/vendor/index',
-        ],
-        main: [
-            './assets/js/main/index'
-        ]
-    },
+config.plugins = [
+    new BundleTracker({
+      filename: './webpack-stats-prod.json'
+   }),
 
-    output: {
-        publicPath: 'http://localhost:20069/assets/bundles/',
-        path: path.resolve('./assets/bundles/'),
-        filename: "[name].js",
-    },
+    new ExtractTextPlugin('[name].css')
+]
 
-    plugins: [
-        new BundleTracker({filename: './webpack-stats.json'}),
-        new ExtractTextPlugin('[name].css'),
-    ],
-
-    module: {
-        loaders: [{
-            test: /\.js?$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader',
-            query: {
-                presets: ['es2015', 'stage-2']
-            }
-        }, {
-            test: /\.scss$/,
-            use: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: [{
-                    loader: 'css-loader',
-                    options: {
-                        sourceMap: true,
-                    }
-                } ,{
-                    loader: 'sass-loader',
-                    options: {
-                        sourceMap: true,
-                        includePaths: modulePaths
-                    }
-                }]
-            }),
-        },{
-            test: /\.css$/,
-            loader: ExtractTextPlugin.extract('css-loader')
-        }],
-    },
-
-    resolve: {
-        modules: [
-            'node_modules',
-            path.resolve(__dirname, 'assets/js/'),
-            path.resolve(__dirname, 'assets/css/'),
-        ],
-        extensions: ['*', '.js', '.scss', 'css'],
-    },
-})
+module.exports = config;
