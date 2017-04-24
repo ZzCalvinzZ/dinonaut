@@ -122,11 +122,13 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
 )
 
+PROD = False
+
 from .local import *
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'CACHE': True,
+        'CACHE': False,
         'BUNDLE_DIR_NAME': 'bundles/', # must end with slash
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
         'POLL_INTERVAL': 0.1,
@@ -136,5 +138,7 @@ WEBPACK_LOADER = {
 }
 
 if PROD:
-    WEBPACK_LOADER['STATS_FILE'] = os.path.join(BASE_DIR, 'webpack-stats-prod.json')
-    WEBPACK_LOADER['CACHE'] = False
+    WEBPACK_LOADER.update({
+        'CACHE': True,
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json'),
+    })
