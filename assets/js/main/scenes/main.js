@@ -50,7 +50,7 @@ class MainScene {
 
 		this.objects = [this.planet, this.player];
 
-		stage.addChild(this.scene);
+		stage.addChildAt(this.scene, stage.children.length - 1);
 	}
 
 	handlePlayerPosition() {

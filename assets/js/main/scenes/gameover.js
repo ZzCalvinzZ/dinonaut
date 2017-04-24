@@ -74,7 +74,7 @@ class GameOverScene {
 		this.scene.addChild(this.scoreCard);
 		this.scene.addChild(this.replay);
 
-		stage.addChild(this.scene);
+		stage.addChildAt(this.scene, stage.children.length - 1);
 	}
 
 }

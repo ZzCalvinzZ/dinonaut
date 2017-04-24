@@ -5,11 +5,14 @@ import MainScene from 'main/scenes/main';
 import MenuScene from 'main/scenes/menu';
 import GameOverScene from 'main/scenes/gameover';
 import BackgroundScene from 'main/scenes/background';
+import ForegroundScene from 'main/scenes/foreground';
 import { Howl } from 'howler';
 
 class Game {
 
 	images = [
+		['speaker', 'speaker.png'],
+		['speaker_off', 'speaker_off.png'],
 		['dinonaut', 'dinonaut.png'],
 		['planet', 'planet.png'],
 		['meteor', 'meteor.png'],
@@ -102,11 +105,12 @@ class Game {
 
 		stage.removeChild(this.loadScreen.scene);
 
+		this.foreground = new ForegroundScene();
 		this.background = new BackgroundScene();
 
 		this.menuScreen();
 
-		//sounds.dinonauttheme.play();
+		sounds.dinonauttheme.play();
 
 		this.gameLoop();
 	}

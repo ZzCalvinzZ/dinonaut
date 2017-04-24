@@ -1,8 +1,9 @@
 import {CANVAS, renderStage, stage, toRadians} from 'main/utils';
 import Background from 'main/objects/background';
+import Speaker from 'main/objects/speaker';
 
 
-class BackgroundScene {
+class ForegroundScene {
 	scene = new PIXI.Container();
 
 	constructor() {
@@ -10,19 +11,14 @@ class BackgroundScene {
 	}
 
 	setScene() {
-		this.background = new Background({
+		this.speaker = new Speaker({
 			scene: this.scene,
 		});
 
-		stage.addChildAt(this.scene, stage.children.length - 1);
-	}
-
-
-	gameLoop() {
-
+		stage.addChild(this.scene);
 	}
 
 }
 
-module.exports = BackgroundScene;
+module.exports = ForegroundScene;
 

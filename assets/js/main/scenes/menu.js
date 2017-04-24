@@ -38,7 +38,7 @@ class MenuScene {
 		});
 
 		this.scene.addChild(this.text);
-		stage.addChild(this.scene);
+		stage.addChildAt(this.scene, stage.children.length - 1);
 	}
 
 }
