@@ -130,15 +130,18 @@ WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': False,
         'BUNDLE_DIR_NAME': 'bundles/', # must end with slash
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json'),
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
         'IGNORE': ['.+\.map']
     }
 }
 
-# if PROD:
-    # WEBPACK_LOADER.update({
-        # 'CACHE': True,
-        # 'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json'),
-    # })
+if PROD:
+    WEBPACK_LOADER = {
+        'DEFAULT': {
+            'CACHE': True,
+            'BUNDLE_DIR_NAME': 'bundles/', # must end with slash
+            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json'),
+        }
+    }
