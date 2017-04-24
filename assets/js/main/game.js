@@ -2,6 +2,7 @@ import {soundPath, imagePath, renderStage, stage, textures, sounds} from 'main/u
 import Loader from 'main/scenes/loader';
 import KeyboardInput from 'main/controls';
 import MainScene from 'main/scenes/main';
+import MenuScene from 'main/scenes/menu';
 import { Howl } from 'howler';
 
 class Game {
@@ -57,6 +58,33 @@ class Game {
 		}
 	}
 
+	removeCurrentScene() {
+		if (this.currentScene) {
+			stage.removeChild(this.currentScene.scene)
+		}
+	}
+
+	gameOver() {
+		this.removeCurrentScene();
+		this.score = this.currentScene.score;
+
+		//this.currentScene = new GameOverScene({gameOver: this.gameOver.bind(this)});
+		renderStage(); 
+	}
+
+	newGame() {
+		this.removeCurrentScene();
+		this.currentScene = new MainScene({gameOver: this.gameOver.bind(this)});
+		renderStage();
+
+	}
+
+	menuScreen() {
+		this.removeCurrentScene();
+		this.currentScene = new MenuScene({newGame: this.newGame.bind(this)});
+		renderStage();
+	}
+
 	setupGame() {
 
 		this.setTextures();
@@ -64,9 +92,7 @@ class Game {
 
 		stage.removeChild(this.loadScreen.scene);
 
-		this.currentScene = new MainScene();
-		
-		renderStage();
+		this.menuScreen();
 
 		//sounds.dinonauttheme.play();
 
@@ -75,7 +101,9 @@ class Game {
 
 	gameLoop(){
 		requestAnimationFrame(this.gameLoop.bind(this))
-		this.currentScene.gameLoop();
+		if (this.currentScene.gameLoop) {
+			this.currentScene.gameLoop();
+		}
 		renderStage()
 	}
 }

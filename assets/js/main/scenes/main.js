@@ -8,8 +8,9 @@ import BackgroundScene from 'main/scenes/background';
 class MainScene {
 	scene = new PIXI.Container();
 
-	constructor() {
+	constructor({gameOver=()=>{}}) {
 		this.score = 0;
+		this.gameOver = gameOver;
 		this.setScene();
 	}
 
@@ -85,10 +86,6 @@ class MainScene {
 	setNewMeteorInterval() {
 		this.currentMeteorInterval = _.random(meteorInterval[0], meteorInterval[1]);
 		this.timeSinceLastMeteor = 0;
-	}
-
-	gameOver() {
-
 	}
 
 	handleMeteors() {

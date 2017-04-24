@@ -67,8 +67,8 @@ class Meteor extends CircleBase {
 
 	gameLoop({planet=null, player=null, meteors=null, deleteMeteors=[]}) {
 		if (this.isOutOfBounds()) {
-			this.removeSprite();
-			return 'delete';
+			this.explode(deleteMeteors);
+			return;
 		}
 
 		if (player.shielding && !this.deflected) {

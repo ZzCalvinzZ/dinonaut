@@ -19,6 +19,12 @@ class BaseObject {
 				y: y + this.height / 2,
 			}
 
+			if (this.circular) {
+				this.sprite.circular = true;
+				this.sprite.centerX = this.x;
+				this.sprite.centerY = this.y;
+			}
+
 			// for bump to work with pivot
 			this.sprite.xAnchorOffset = this.sprite.width - this.sprite.pivot.x;
 			this.sprite.yAnchorOffset = this.sprite.height - this.sprite.pivot.y;
@@ -41,7 +47,6 @@ class BaseObject {
 		this.height = this.texture.height;
 
 		this.sprite = new PIXI.Sprite(this.texture);
-		if (this.circular) this.sprite.circular = true;
 
 		this.setPivot(this.pivot, this.pivot);
 
