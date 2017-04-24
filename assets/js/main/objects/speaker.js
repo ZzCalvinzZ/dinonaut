@@ -18,10 +18,10 @@ class Speaker extends BaseObject {
 		this.sprite.on('click', () => {
 			if (this.name === 'speaker') {
 				this.name = 'speaker_off';
-				this.modifyAllSounds('stop');
+				sounds.dinonauttheme.pause();
 			} else {
 				this.name = 'speaker';
-				this.modifyAllSounds('play');
+				sounds.dinonauttheme.play();
 			}
 			this.makeSprite();
 
@@ -35,12 +35,6 @@ class Speaker extends BaseObject {
 			document.body.style.cursor = 'initial';
 		});
 
-	}
-
-	modifyAllSounds(action) {
-		Object.keys(sounds).forEach(function(key) {
-			key, sounds[key][action]();
-		});
 	}
 }
 
