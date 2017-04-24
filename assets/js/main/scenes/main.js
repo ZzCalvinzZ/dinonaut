@@ -107,17 +107,14 @@ class MainScene {
 				planet: this.planet,
 				player: this.player,
 				meteors: this.meteors,
-				deleteMeteors: deleteMeteors
+				deleteMeteors: deleteMeteors,
+				gameOver: this.gameOver
 			});
 
 			if (meteorStatus === 'gameover') {
 				gameOver = true;
 			}
 
-		}
-
-		if (gameOver) {
-			return this.gameOver();
 		}
 
 		for (let meteor of deleteMeteors) {

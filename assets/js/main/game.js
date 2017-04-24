@@ -19,11 +19,13 @@ class Game {
 		['background', 'background/background.json'],
 		['dinonautshield', 'dinonautshield/dinonautshield.json'],
 		['dinonautwalking', 'dinonautwalking/dinonautwalking.json'],
+		['explosion1', 'explosion1/explosion1.json'],
 	]
 
 	sounds = [
+		// [name, filename, loop, volume]
 		['dinonauttheme', 'dinonauttheme.ogg', true],
-		['explosion1', 'explosion1.mp3'],
+		['explosionsound', 'explosionsound.mp3'],
 		['point', 'point.mp3'],
 		['shield', 'shield.mp3', false, 2],
 	]

@@ -56,10 +56,12 @@ class Meteor extends CircleBase {
 		}
 	}
 
-	explode({deleteMeteors=null, soundExplosion=true, pointSound=true}) {
+	explode({deleteMeteors=null, soundExplosion=true, pointSound=false, gameOver=null}) {
 		if (soundExplosion) {
-			sounds.explosion1.play();
+			sounds.explosionsound.play();
+
 		}
+
 		if (pointSound) {
 			sounds.point.play();
 		}
@@ -67,13 +69,31 @@ class Meteor extends CircleBase {
 		this.exploding = true;
 		this.removeSprite();
 
-		if (!deleteMeteors.includes(this)) {
-			deleteMeteors.push(this);
+		if (soundExplosion) {
+			this.createAnimatedSprite({
+				numOfSheets: 6,
+				speed: 0.1,
+				name: 'explosion1',
+				loop: false
+			});
+
+			this.sprite.onComplete = () =>  {
+				if (gameOver) {
+					return gameOver();
+				}
+
+				this.removeSprite();
+				if (!deleteMeteors.includes(this)) {
+					deleteMeteors.push(this);
+				}
+			};
+
+			this.setPosition(this.x, this.y);
 		}
 
 	}
 
-	gameLoop({planet=null, player=null, meteors=null, deleteMeteors=[]}) {
+	gameLoop({planet=null, player=null, meteors=null, deleteMeteors=[], gameOver=null}) {
 		if (this.isOutOfBounds()) {
 			this.explode({
 				deleteMeteors: deleteMeteors,
@@ -83,25 +103,29 @@ class Meteor extends CircleBase {
 			return;
 		}
 
-		if (player.shielding && !this.deflected) {
+		//handle player
+		if (player.shielding && !this.deflected && !this.exploding) {
 			if (b.circleCollision(this.sprite, player.sprite, true)) {
 				sounds.shield.play();
 				this.deflected = true;
 			}
 		} 
 
-		if (b.circleCollision(this.sprite, planet.sprite)) {
-			this.explode({
-				deleteMeteors: deleteMeteors,
-				soundExplosion: true,
-				pointSound: false,
-			});
-
-			return 'gameover';
+		//handle planet
+		if (!this.exploding) {
+			if (b.circleCollision(this.sprite, planet.sprite)) {
+				this.explode({
+					deleteMeteors: deleteMeteors,
+					soundExplosion: true,
+					pointSound: false,
+					gameOver: gameOver
+				});
+			}
 		}
 
+		//handle meteors
 		for (let meteor of meteors) {
-			if (meteor !== this) {
+			if (meteor !== this && !meteor.exploding) {
 				if (b.circleCollision(this.sprite, meteor.sprite)) {
 					this.explode({deleteMeteors: deleteMeteors});
 
