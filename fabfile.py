@@ -18,5 +18,6 @@ def update(branch=None):
 		run('%s pip install -r requirements.txt' % workon)
 		run('find . -name "*.pyc" -delete')
 
+		sudo('webpack -p --config webpack.production.config.js')
 		sudo('service nginx restart')
 		sudo('service uwsgi restart')
