@@ -1,10 +1,8 @@
-import {renderStage, stage} from 'main/utils';
+import {renderStage, stage, CANVAS} from 'main/utils';
 
 class Loader {
 	scene = new PIXI.Container();
-
-	progressText(progress) {
-		return `${progress}% loaded`;
+progressText(progress) { return `${progress}% loaded`;
 	}
 
 	constructor() {
@@ -12,17 +10,25 @@ class Loader {
 	}
 
 	setScene() {
+
 		this.text = new PIXI.Text(
-			this.progressText(0),
+			`Score: ${this.score}`,
 			{
 				fontFamily: 'Arial',
 				fontSize: 24,
-				fill: 0xff1010,
-				align: 'center'
+				fill: 0xFFFFFF,
+				align: 'center',
 			}
 		);
+
+		this.text.anchor.x = 0.5;
+		this.text.anchor.y = 0.5;
+		this.text.x = CANVAS.x / 2;
+		this.text.y = CANVAS.y / 2;
+
 		this.scene.addChild(this.text);
 		stage.addChild(this.scene);
+
 	}
 
 	loadProgress(loader, resource) {

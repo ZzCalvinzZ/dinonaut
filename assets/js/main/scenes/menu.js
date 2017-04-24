@@ -29,6 +29,14 @@ class MenuScene {
 			this.newGame();
 		});
 
+		this.text.on('mouseover', () => {
+			this.text.style.fill = 0xffff00;
+		});
+
+		this.text.on('mouseout', () => {
+			this.text.style.fill = 0xffffff;
+		});
+
 		this.scene.addChild(this.text);
 		stage.addChild(this.scene);
 	}

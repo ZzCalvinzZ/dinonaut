@@ -3,6 +3,8 @@ import Loader from 'main/scenes/loader';
 import KeyboardInput from 'main/controls';
 import MainScene from 'main/scenes/main';
 import MenuScene from 'main/scenes/menu';
+import GameOverScene from 'main/scenes/gameover';
+import BackgroundScene from 'main/scenes/background';
 import { Howl } from 'howler';
 
 class Game {
@@ -21,6 +23,7 @@ class Game {
 	]
 
 	constructor() {
+		this.highScore = 0;
 		renderStage();
 		this.loadScreen = new Loader();
 		this.loadAssets();
@@ -67,8 +70,15 @@ class Game {
 	gameOver() {
 		this.removeCurrentScene();
 		this.score = this.currentScene.score;
+		if (this.score > this.highScore) {
+			this.highScore = this.score;
+		}
 
-		//this.currentScene = new GameOverScene({gameOver: this.gameOver.bind(this)});
+		this.currentScene = new GameOverScene({
+			newGame: this.newGame.bind(this),
+			score: this.score,
+			highScore: this.highScore,
+		});
 		renderStage(); 
 	}
 
@@ -91,6 +101,8 @@ class Game {
 		this.setSounds();
 
 		stage.removeChild(this.loadScreen.scene);
+
+		this.background = new BackgroundScene();
 
 		this.menuScreen();
 

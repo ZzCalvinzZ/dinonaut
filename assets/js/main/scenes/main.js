@@ -3,7 +3,6 @@ import {CANVAS, renderStage, stage, toRadians, meteorInterval, meteorIntervalAcc
 import Planet from 'main/objects/planet';
 import Player from 'main/objects/player';
 import Meteor from 'main/objects/meteor';
-import BackgroundScene from 'main/scenes/background';
 
 class MainScene {
 	scene = new PIXI.Container();
@@ -15,8 +14,6 @@ class MainScene {
 	}
 
 	setScene() {
-		this.background = new BackgroundScene();
-
 		//score
 		this.scoreCard = new PIXI.Text(
 			'Score: 0',
@@ -51,7 +48,7 @@ class MainScene {
 			angle: 270, // in degrees
 		});
 
-		this.objects = [this.background, this.planet, this.player];
+		this.objects = [this.planet, this.player];
 
 		stage.addChild(this.scene);
 	}
