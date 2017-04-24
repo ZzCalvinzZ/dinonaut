@@ -27,6 +27,14 @@ class Speaker extends BaseObject {
 
 		});
 
+		this.sprite.on('mouseover', () => {
+			document.body.style.cursor = 'pointer';
+		});
+
+		this.sprite.on('mouseout', () => {
+			document.body.style.cursor = 'initial';
+		});
+
 	}
 }
 
