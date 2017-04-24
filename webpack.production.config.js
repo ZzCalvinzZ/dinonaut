@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var config = require('./webpack.config.js');
+var config = require('./webpack.config.js')();
 
 config.output.filename = "[name].js";
 config.output.path = path.resolve(__dirname, '/assets/bundles');
