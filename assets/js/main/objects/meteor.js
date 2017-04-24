@@ -4,7 +4,7 @@ import {getTexture, CANVAS, getRandomPointOnPerimeter, b, meteorSpeed, sounds, t
 
 class Meteor extends CircleBase {
 	get texture() {
-		return getTexture('meteor');
+		return getTexture('meteorImg');
 	}
 
 	constructor({x=0, y=0, scene=null, planet=null}) {
@@ -22,7 +22,11 @@ class Meteor extends CircleBase {
 
 		({x, y} = this.getStartPosition());
 
-		this.createSprite();
+		this.createAnimatedSprite({
+			numOfSheets: 3,
+			speed: 0.2,
+			name: 'meteor',
+		});
 		this.setPosition(x, y);
 
 		[this.sprite.vx, this.sprite.vy] = this.calculateTrajectory();
