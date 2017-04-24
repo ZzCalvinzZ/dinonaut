@@ -67,7 +67,7 @@ class Meteor extends CircleBase {
 		}
 	}
 
-	explode({deleteMeteors=null, soundExplosion=true, pointSound=true, gameOver=null}) {
+	explode({deleteMeteor=null, soundExplosion=true, pointSound=true, gameOver=null}) {
 		this.exploding = true;
 		this.removeSprite();
 
@@ -87,16 +87,17 @@ class Meteor extends CircleBase {
 				}
 
 				this.removeSprite();
-				if (!deleteMeteors.includes(this)) {
-					deleteMeteors.push(this);
+				if (deleteMeteor) {
+					deleteMeteor(this);
 				}
+				sounds.point.play();
 			};
 
 			this.setPosition(this.x, this.y);
 
 		} else {
-			if (!deleteMeteors.includes(this)) {
-				deleteMeteors.push(this);
+			if (deleteMeteor) {
+				deleteMeteor(this);
 			}
 		}
 
@@ -106,10 +107,10 @@ class Meteor extends CircleBase {
 
 	}
 
-	gameLoop({planet=null, player=null, meteors=null, deleteMeteors=[], gameOver=null}) {
+	gameLoop({planet=null, player=null, meteors=null, deleteMeteor=null, gameOver=null}) {
 		if (this.isOutOfBounds() && !this.exploding) {
 			this.explode({
-				deleteMeteors: deleteMeteors,
+				deleteMeteor: deleteMeteor,
 				soundExplosion: false,
 			});
 
@@ -128,7 +129,7 @@ class Meteor extends CircleBase {
 		if (!this.exploding) {
 			if (b.circleCollision(this.sprite, planet.sprite)) {
 				this.explode({
-					deleteMeteors: deleteMeteors,
+					deleteMeteor: deleteMeteor,
 					soundExplosion: true,
 					pointSound: false,
 					gameOver: gameOver
@@ -140,9 +141,13 @@ class Meteor extends CircleBase {
 		for (let meteor of meteors) {
 			if (meteor !== this && !meteor.exploding) {
 				if (b.circleCollision(this.sprite, meteor.sprite)) {
-					this.explode({deleteMeteors: deleteMeteors});
+					this.explode({
+						deleteMeteor: deleteMeteor,
+					});
 
-					meteor.explode({deleteMeteors: deleteMeteors});
+					meteor.explode({
+						deleteMeteor: deleteMeteor,
+					});
 				}
 
 			}

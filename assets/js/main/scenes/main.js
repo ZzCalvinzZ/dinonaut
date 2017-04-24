@@ -100,29 +100,27 @@ class MainScene {
 		}
 
 		let deleteMeteors = [];
-		let gameOver = false;
 
 		for (let meteor of this.meteors) {
 			let meteorStatus = meteor.gameLoop({
 				planet: this.planet,
 				player: this.player,
 				meteors: this.meteors,
-				deleteMeteors: deleteMeteors,
+				deleteMeteor: this.deleteMeteor.bind(this),
 				gameOver: this.gameOver
 			});
-
-			if (meteorStatus === 'gameover') {
-				gameOver = true;
-			}
 
 		}
 
 		for (let meteor of deleteMeteors) {
-			this.meteors.splice(this.meteors.indexOf(meteor), 1);
-			this.score += 1;
-			this.scoreCard.text = `Score: ${this.score}`;
+			this.deleteMeteor(meteor);
 		}
 
+	}
+	deleteMeteor(meteor) {
+		this.meteors.splice(this.meteors.indexOf(meteor), 1);
+		this.score += 1;
+		this.scoreCard.text = `Score: ${this.score}`;
 	}
 
 	gameLoop() {
