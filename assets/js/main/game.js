@@ -25,7 +25,7 @@ class Game {
 
 	sounds = [
 		// [name, filename, loop, volume]
-		['dinonauttheme', 'dinonauttheme.mp3', true],
+		['dinonauttheme', 'dinonauttheme.ogg', true],
 		['explosionsound', 'explosionsound.mp3'],
 		['point', 'point.mp3'],
 		['shield', 'shield.mp3', false, 2],
@@ -67,6 +67,7 @@ class Game {
 				src: [soundPath(file)],
 				loop: loop || false,
 				volume: volume || 0.75,
+				html5: true,
 			});;
 		}
 	}
