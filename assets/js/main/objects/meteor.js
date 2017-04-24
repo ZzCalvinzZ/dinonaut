@@ -1,6 +1,6 @@
 import _ from 'underscore';
 import {CircleBase} from 'main/objects/base';
-import {getTexture, CANVAS, getRandomPointOnPerimeter, b, meteorSpeed, sounds} from 'main/utils';
+import {getTexture, CANVAS, getRandomPointOnPerimeter, b, meteorSpeed, sounds, toRadians} from 'main/utils';
 
 class Meteor extends CircleBase {
 	get texture() {
@@ -12,6 +12,8 @@ class Meteor extends CircleBase {
 
 		this.planet = planet;
 		this.radius = this.texture.width / 2;
+		this.rotation = _.random(0, 359);
+		this.rotationSpeed = _.random(-5, 5);
 
 		this.pivot = {
 			x: this.radius,
@@ -43,6 +45,11 @@ class Meteor extends CircleBase {
 
 	getStartPosition() {
 		return getRandomPointOnPerimeter();
+	}
+
+	setPosition(x, y) {
+		this.sprite.rotation = toRadians(this.rotation);
+		super.setPosition(x, y);
 	}
 
 	isOutOfBounds() {
@@ -127,7 +134,7 @@ class Meteor extends CircleBase {
 
 		//handle meteors
 		for (let meteor of meteors) {
-			if (meteor !== this) {
+			if (meteor !== this && !meteor.exploding) {
 				if (b.circleCollision(this.sprite, meteor.sprite)) {
 					this.explode({deleteMeteors: deleteMeteors});
 
@@ -140,6 +147,7 @@ class Meteor extends CircleBase {
 		if (!this.exploding) {
 			let newX = this.x + this.sprite.vx;
 			let newY = this.y + this.sprite.vy;
+			this.rotation += this.rotationSpeed;
 			this.setPosition(newX, newY);
 		}
 
