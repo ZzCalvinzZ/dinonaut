@@ -28,7 +28,7 @@ class Game {
 		['dinonauttheme', 'dinonauttheme.ogg', true],
 		['explosionsound', 'explosionsound.mp3'],
 		['point', 'point.mp3'],
-		['shield', 'shield.mp3', false, 2],
+		['shield', 'shield.mp3', false, 1],
 	]
 
 	constructor() {
@@ -36,8 +36,7 @@ class Game {
 		renderStage();
 		this.loadScreen = new Loader();
 		this.loadAssets();
-	}
-
+	} 
 	loadAssets() {
 		let loader = PIXI.loader
 
@@ -66,7 +65,7 @@ class Game {
 			sounds[sound] = new Howl({
 				src: [soundPath(file)],
 				loop: loop || false,
-				volume: volume || 0.75,
+				volume: volume || 0.3,
 				html5: true,
 			});;
 		}
