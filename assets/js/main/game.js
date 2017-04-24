@@ -24,6 +24,8 @@ class Game {
 	sounds = [
 		['dinonauttheme', 'dinonauttheme.ogg', true],
 		['explosion1', 'explosion1.mp3'],
+		['point', 'point.mp3'],
+		['shield', 'shield.mp3', false, 2],
 	]
 
 	constructor() {
@@ -57,10 +59,11 @@ class Game {
 	}
 
 	setSounds() {
-		for (let [sound, file, loop] of this.sounds) {
+		for (let [sound, file, loop, volume] of this.sounds) {
 			sounds[sound] = new Howl({
 				src: [soundPath(file)],
-				loop: loop || false
+				loop: loop || false,
+				volume: volume || 0.75,
 			});;
 		}
 	}

@@ -56,9 +56,12 @@ class Meteor extends CircleBase {
 		}
 	}
 
-	explode(deleteMeteors, playSound=true) {
-		if (playSound) {
+	explode({deleteMeteors=null, soundExplosion=true, pointSound=true}) {
+		if (soundExplosion) {
 			sounds.explosion1.play();
+		}
+		if (pointSound) {
+			sounds.point.play();
 		}
 
 		this.exploding = true;
@@ -72,26 +75,37 @@ class Meteor extends CircleBase {
 
 	gameLoop({planet=null, player=null, meteors=null, deleteMeteors=[]}) {
 		if (this.isOutOfBounds()) {
-			this.explode(deleteMeteors, false);
+			this.explode({
+				deleteMeteors: deleteMeteors,
+				soundExplosion: false,
+			});
+
 			return;
 		}
 
 		if (player.shielding && !this.deflected) {
 			if (b.circleCollision(this.sprite, player.sprite, true)) {
+				sounds.shield.play();
 				this.deflected = true;
 			}
 		} 
 
 		if (b.circleCollision(this.sprite, planet.sprite)) {
-			this.explode(deleteMeteors);
+			this.explode({
+				deleteMeteors: deleteMeteors,
+				soundExplosion: true,
+				pointSound: false,
+			});
+
 			return 'gameover';
 		}
 
 		for (let meteor of meteors) {
 			if (meteor !== this) {
 				if (b.circleCollision(this.sprite, meteor.sprite)) {
-					this.explode(deleteMeteors);
-					meteor.explode(deleteMeteors);
+					this.explode({deleteMeteors: deleteMeteors});
+
+					meteor.explode({deleteMeteors: deleteMeteors});
 				}
 
 			}
