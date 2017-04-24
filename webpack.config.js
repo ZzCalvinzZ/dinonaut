@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-module.exports = modulePaths => ({
+module.exports = {
     context: __dirname,
 
     devtool: 'source-map',
@@ -70,4 +70,4 @@ module.exports = modulePaths => ({
         ],
         extensions: ['*', '.js', '.scss', 'css'],
     },
-})
+}
