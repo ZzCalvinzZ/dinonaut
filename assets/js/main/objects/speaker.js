@@ -13,7 +13,7 @@ class Speaker extends BaseObject {
 		this.texture = getTexture(this.name)
 		this.createSprite();
 		this.sprite.interactive = true;
-		this.setPosition(CANVAS.x - 200, CANVAS.y - 200);
+		this.setPosition(CANVAS.x - 40, 20);
 
 		this.sprite.on('click', () => {
 			if (this.name === 'speaker') {
