@@ -25,7 +25,7 @@ class Game {
 
 	sounds = [
 		// [name, filename, loop, volume]
-		['dinonauttheme', 'dinonauttheme.ogg', true],
+		['dinonauttheme', 'dinonauttheme.mp3', true],
 		['explosionsound', 'explosionsound.mp3'],
 		['point', 'point.mp3'],
 		['shield', 'shield.mp3', false, 2],
