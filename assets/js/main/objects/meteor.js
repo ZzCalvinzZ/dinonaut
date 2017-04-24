@@ -1,6 +1,6 @@
 import _ from 'underscore';
 import {CircleBase} from 'main/objects/base';
-import {getTexture, CANVAS, getRandomPointOnPerimeter, b, meteorSpeed} from 'main/utils';
+import {getTexture, CANVAS, getRandomPointOnPerimeter, b, meteorSpeed, sounds} from 'main/utils';
 
 class Meteor extends CircleBase {
 	get texture() {
@@ -56,9 +56,14 @@ class Meteor extends CircleBase {
 		}
 	}
 
-	explode(deleteMeteors) {
+	explode(deleteMeteors, playSound=true) {
+		if (playSound) {
+			sounds.explosion1.play();
+		}
+
 		this.exploding = true;
 		this.removeSprite();
+
 		if (!deleteMeteors.includes(this)) {
 			deleteMeteors.push(this);
 		}
@@ -67,7 +72,7 @@ class Meteor extends CircleBase {
 
 	gameLoop({planet=null, player=null, meteors=null, deleteMeteors=[]}) {
 		if (this.isOutOfBounds()) {
-			this.explode(deleteMeteors);
+			this.explode(deleteMeteors, false);
 			return;
 		}
 

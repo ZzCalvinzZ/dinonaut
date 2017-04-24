@@ -23,6 +23,7 @@ class Game {
 
 	sounds = [
 		['dinonauttheme', 'dinonauttheme.ogg', true],
+		['explosion1', 'explosion1.mp3'],
 	]
 
 	constructor() {
