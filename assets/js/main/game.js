@@ -44,10 +44,6 @@ class Game {
 			loader.add(img, imagePath(file))
 		}
 
-		for (let [sound, file] of this.sounds) {
-			loader.add(sound, soundPath(file))
-		}
-
 		loader
 			.on("progress", this.loadScreen.loadProgress.bind(this.loadScreen))
 			.load(this.setupGame.bind(this));
