@@ -6,8 +6,8 @@ let canvasWrapper = 'root';
 let stage = new PIXI.Container()
 
 let CANVAS = {
-	x: 800,
-	y: 800
+	x: 700,
+	y: 700
 }
 
 let meteorInterval = [50, 200];
