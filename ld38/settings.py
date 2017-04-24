@@ -98,6 +98,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': True,
+        'BUNDLE_DIR_NAME': 'bundles/', # must end with slash
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': ['.+\.map']
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -123,24 +133,3 @@ STATICFILES_DIRS = (
 )
 
 from .local import *
-
-if DEBUG:
-    WEBPACK_LOADER = {
-        'DEFAULT': {
-            'CACHE': True,
-            'BUNDLE_DIR_NAME': 'bundles/', # must end with slash
-            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
-            'POLL_INTERVAL': 0.1,
-            'TIMEOUT': None,
-            'IGNORE': ['.+\.map']
-        }
-    }
-else:
-    WEBPACK_LOADER = {
-        'DEFAULT': {
-            'CACHE': False,
-            'BUNDLE_DIR_NAME': 'bundles/',
-            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json'),
-        }
-    }
-
