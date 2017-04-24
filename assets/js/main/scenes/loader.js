@@ -32,7 +32,8 @@ progressText(progress) { return `${progress}% loaded`;
 	}
 
 	loadProgress(loader, resource) {
-		this.text.text = this.progressText(parseInt(loader.progress));
+		
+		this.text.text = this.progressText(parseInt(loader.progress) - 1);
 		renderStage();
 	}
 

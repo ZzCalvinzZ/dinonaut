@@ -25,7 +25,7 @@ class Game {
 
 	sounds = [
 		// [name, filename, loop, volume]
-		['dinonauttheme', 'dinonauttheme.ogg', true],
+		['dinonauttheme', 'dinonauttheme.ogg', true, null, this.setupGame.bind(this)],
 		['explosionsound', 'explosionsound.mp3'],
 		['point', 'point.mp3'],
 		['shield', 'shield.mp3', false, 1],
@@ -46,7 +46,7 @@ class Game {
 
 		loader
 			.on("progress", this.loadScreen.loadProgress.bind(this.loadScreen))
-			.load(this.setupGame.bind(this));
+			.load(this.setSounds.bind(this));
 
 	}
 
@@ -57,12 +57,13 @@ class Game {
 	}
 
 	setSounds() {
-		for (let [sound, file, loop, volume] of this.sounds) {
+		for (let [sound, file, loop, volume, onload] of this.sounds) {
 			sounds[sound] = new Howl({
 				src: [soundPath(file)],
 				loop: loop || false,
 				volume: volume || 0.3,
 				html5: true,
+				onload: onload || function(){}
 			});;
 		}
 	}
@@ -104,7 +105,6 @@ class Game {
 	setupGame() {
 
 		this.setTextures();
-		this.setSounds();
 
 		stage.removeChild(this.loadScreen.scene);
 
