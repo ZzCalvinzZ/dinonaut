@@ -25,7 +25,7 @@ class GameOverScene {
 		this.highScoreCard.anchor.x = 0.5;
 		this.highScoreCard.anchor.y = 0.5;
 		this.highScoreCard.x = CANVAS.x / 2;
-		this.highScoreCard.y = CANVAS.y / 2;
+		this.highScoreCard.y = CANVAS.y / 2 - 25;
 
 		//score
 		this.scoreCard = new PIXI.Text(
@@ -41,7 +41,7 @@ class GameOverScene {
 		this.scoreCard.anchor.x = 0.5;
 		this.scoreCard.anchor.y = 0.5;
 		this.scoreCard.x = CANVAS.x / 2;
-		this.scoreCard.y = CANVAS.y / 2 + 50;
+		this.scoreCard.y = CANVAS.y / 2 + 25;
 
 		//replay
 		this.replay = new PIXI.Text(
