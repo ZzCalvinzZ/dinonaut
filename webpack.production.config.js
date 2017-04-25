@@ -6,7 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var config = require('./webpack.config.js');
 
 config.output.filename = "[name].js";
-config.output.path = path.resolve(__dirname, '/assets/bundles');
+config.output.path = path.resolve('./assets/bundles');
 config.output.publicPath = undefined;
 config.devtool = undefined;
 
