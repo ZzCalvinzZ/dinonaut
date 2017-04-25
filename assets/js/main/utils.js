@@ -10,11 +10,12 @@ let CANVAS = {
 	y: 700
 }
 
-let meteorInterval = [50, 200];
-let meteorIntervalAcceleration = 10;
-let meteorSpeed = [0.003, 0.002];
+const meteorInterval = [100, 300];
+const meteorIntervalAcceleration = .97;
+const meteorSpeed = [0.003, 0.002];
 
-let playerSpeed = 3;
+let playerSpeed = 2;
+const speedAcceleration = 0.1
 
 let renderer = PIXI.autoDetectRenderer(
 	CANVAS.x, CANVAS.y,
@@ -101,5 +102,6 @@ module.exports = {
 	meteorIntervalAcceleration: meteorIntervalAcceleration,
 	meteorSpeed: meteorSpeed, 
 	playerSpeed: playerSpeed,
+	speedAcceleration: speedAcceleration,
 	b: b,
 };

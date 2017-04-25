@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import {CANVAS, renderStage, stage, toRadians, meteorInterval, meteorIntervalAcceleration, playerSpeed} from 'main/utils';
+import {CANVAS, renderStage, stage, toRadians, meteorInterval, meteorIntervalAcceleration, playerSpeed, speedAcceleration} from 'main/utils';
 import Planet from 'main/objects/planet';
 import Player from 'main/objects/player';
 import Meteor from 'main/objects/meteor';
@@ -29,10 +29,6 @@ class MainScene {
 		this.scoreCard.y = 20;
 		this.scene.addChild(this.scoreCard);
 
-		//meteor
-		this.meteors = [];
-		this.setNewMeteorInterval();
-
 		//planet
 		this.planet = new Planet({
 			scene: this.scene,
@@ -47,6 +43,12 @@ class MainScene {
 			y: this.planet.y - this.planet.radius,
 			angle: 270, // in degrees
 		});
+		this.playerSpeed = playerSpeed;
+
+		//meteor
+		this.meteors = [];
+		this.meteorInterval = meteorInterval.slice();
+		this.setNewMeteorInterval();
 
 		this.objects = [this.planet, this.player];
 
@@ -57,11 +59,11 @@ class MainScene {
 		let posChange = null;
 
 		if (this.player.left.isDown && !this.player.shielding) {
-			this.player.moveLeft(playerSpeed);
+			this.player.moveLeft(this.playerSpeed);
 			posChange = true;
 
 		} else if (this.player.right.isDown && !this.player.shielding) {
-			this.player.moveRight(playerSpeed);
+			this.player.moveRight(this.playerSpeed);
 			posChange = true;
 
 		}
@@ -81,7 +83,12 @@ class MainScene {
 	}
 
 	setNewMeteorInterval() {
-		this.currentMeteorInterval = _.random(meteorInterval[0], meteorInterval[1]);
+		this.meteorInterval[0] = Math.ceil(this.meteorInterval[0] * meteorIntervalAcceleration);
+		this.meteorInterval[1] = Math.ceil(this.meteorInterval[1] * meteorIntervalAcceleration);
+		this.playerSpeed += speedAcceleration;
+		console.log(this.meteorInterval);
+		console.log(this.playerSpeed);
+		this.currentMeteorInterval = _.random(this.meteorInterval[0], this.meteorInterval[1]);
 		this.timeSinceLastMeteor = 0;
 	}
 
