@@ -140,7 +140,7 @@ WEBPACK_LOADER = {
 if PROD:
     WEBPACK_LOADER = {
         'DEFAULT': {
-            'CACHE': True,
+            'CACHE': False,
             'BUNDLE_DIR_NAME': 'bundles/', # must end with slash
             'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json'),
         }
