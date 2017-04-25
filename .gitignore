@@ -51,6 +51,5 @@ Doxy*
 
 *local.py
 
-assets/bundles/
 node_modules/
 webpack-stats.json
