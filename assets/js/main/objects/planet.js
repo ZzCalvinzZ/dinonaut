@@ -18,6 +18,7 @@ class Planet extends CircleBase {
 		};
 
 		this.createSprite();
+		this.sprite.radius = this.radius - 10
 		this.setPosition(x, y);
 	}
 }

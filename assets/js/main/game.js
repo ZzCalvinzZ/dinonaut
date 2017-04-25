@@ -77,6 +77,7 @@ class Game {
 	gameOver() {
 		this.removeCurrentScene();
 		this.score = this.currentScene.score;
+		this.maxSpeed = this.currentScene.playerSpeed;
 		if (this.score > this.highScore) {
 			this.highScore = this.score;
 		}
@@ -85,6 +86,7 @@ class Game {
 			newGame: this.newGame.bind(this),
 			score: this.score,
 			highScore: this.highScore,
+			maxSpeed: this.maxSpeed,
 		});
 		renderStage(); 
 	}

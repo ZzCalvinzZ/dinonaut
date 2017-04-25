@@ -3,9 +3,10 @@ import {renderStage, stage, CANVAS} from 'main/utils';
 class GameOverScene {
 	scene = new PIXI.Container();
 
-	constructor({newGame=()=>{}, score=0, highScore=0}) {
+	constructor({newGame=()=>{}, score=0, highScore=0, maxSpeed}) {
 		this.score = score;
 		this.highScore = highScore;
+		this.maxSpeed = maxSpeed;
 		this.newGame = newGame;
 		this.setScene();
 	}
@@ -29,7 +30,7 @@ class GameOverScene {
 
 		//score
 		this.scoreCard = new PIXI.Text(
-			`Score: ${this.score}`,
+			`Score: ${this.score}  -   Top Speed: ${this.maxSpeed.toFixed(1)}`,
 			{
 				fontFamily: 'Arial',
 				fontSize: 24,
