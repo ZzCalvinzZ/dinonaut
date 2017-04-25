@@ -11,6 +11,7 @@ module.exports = {
     entry: {
         vendor: [
             "expose-loader?PIXI!./assets/js/vendor/pixi.min.js",
+            'webpack-dev-server/client?http://localhost:20069',
             'babel-polyfill',
             './assets/js/vendor/index',
         ],
