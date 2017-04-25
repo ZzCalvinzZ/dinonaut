@@ -75,23 +75,27 @@ class Game {
 	}
 
 	gameOver() {
-		this.removeCurrentScene();
-		this.score = this.currentScene.score;
-		this.maxSpeed = this.currentScene.playerSpeed;
-		if (this.score > this.highScore) {
-			this.highScore = this.score;
-		}
+		if (!this.gameIsOver) {
+			this.gameIsOver = true;
+			this.removeCurrentScene();
+			this.score = this.currentScene.score;
+			this.maxSpeed = this.currentScene.playerSpeed;
+			if (this.score > this.highScore) {
+				this.highScore = this.score;
+			}
 
-		this.currentScene = new GameOverScene({
-			newGame: this.newGame.bind(this),
-			score: this.score,
-			highScore: this.highScore,
-			maxSpeed: this.maxSpeed,
-		});
-		renderStage(); 
+			this.currentScene = new GameOverScene({
+				newGame: this.newGame.bind(this),
+				score: this.score,
+				highScore: this.highScore,
+				maxSpeed: this.maxSpeed,
+			});
+			renderStage(); 
+		}
 	}
 
 	newGame() {
+		this.gameIsOver = false;
 		this.removeCurrentScene();
 		this.currentScene = new MainScene({gameOver: this.gameOver.bind(this)});
 		renderStage();

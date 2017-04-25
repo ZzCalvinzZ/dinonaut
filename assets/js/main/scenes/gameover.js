@@ -3,7 +3,7 @@ import {renderStage, stage, CANVAS} from 'main/utils';
 class GameOverScene {
 	scene = new PIXI.Container();
 
-	constructor({newGame=()=>{}, score=0, highScore=0, maxSpeed}) {
+	constructor({newGame=()=>{}, score=0, highScore=0, maxSpeed=0}) {
 		this.score = score;
 		this.highScore = highScore;
 		this.maxSpeed = maxSpeed;

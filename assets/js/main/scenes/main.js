@@ -86,6 +86,8 @@ class MainScene {
 		this.meteorInterval[0] = Math.ceil(this.meteorInterval[0] * meteorIntervalAcceleration);
 		this.meteorInterval[1] = Math.ceil(this.meteorInterval[1] * meteorIntervalAcceleration);
 		this.playerSpeed += speedAcceleration;
+		console.log(this.meteorInterval);
+		console.log(this.playerSpeed);
 		this.currentMeteorInterval = _.random(this.meteorInterval[0], this.meteorInterval[1]);
 		this.timeSinceLastMeteor = 0;
 	}
