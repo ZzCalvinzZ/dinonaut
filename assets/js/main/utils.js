@@ -2,7 +2,7 @@ import Bump from 'main/bump';
 
 let b = new Bump(PIXI);
 
-let canvasWrapper = 'root';
+let canvasWrapper = 'canvas-wrapper';
 let stage = new PIXI.Container()
 
 let CANVAS = {
