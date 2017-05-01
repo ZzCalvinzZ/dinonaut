@@ -100,7 +100,7 @@ class Player extends CircleBase {
 		}
 	}
 
-	activateShield() {
+	activateShield(e) {
 		this.createAnimatedSprite({
 			numOfSheets: 3,
 			speed: 0.25,
@@ -111,7 +111,7 @@ class Player extends CircleBase {
 		this.shielding = true;
 	}
 
-	deactivateShield() {
+	deactivateShield(e) {
 		this.setSprite();
 		this.shielding = false;
 

@@ -1,6 +1,5 @@
 import {soundPath, imagePath, renderStage, stage, textures, sounds} from 'main/utils';
 import Loader from 'main/scenes/loader';
-import KeyboardInput from 'main/controls';
 import MainScene from 'main/scenes/main';
 import MenuScene from 'main/scenes/menu';
 import GameOverScene from 'main/scenes/gameover';

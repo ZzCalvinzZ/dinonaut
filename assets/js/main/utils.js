@@ -86,6 +86,12 @@ const getRandomPointOnPerimeter = () => {
 	return pos;
 }
 
+//stop spacebar from scrolling 
+window.onkeydown = function(e) { 
+	e.preventDefault();
+	return false;
+};
+
 module.exports = {
 	imagePath: filename => `static/img/${filename}`,
 	soundPath: filename => `static/sound/${filename}`,

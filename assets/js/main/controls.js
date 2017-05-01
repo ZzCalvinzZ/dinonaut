@@ -111,7 +111,7 @@ let keyboard = function(keyCode) {
 	key.downHandler = function(event) {
 		if (key.code === event.keyCode) {
 			if (key.isUp && key.press) {
-				key.press();
+				key.press(event);
 				key.isDown = true;
 				key.isUp = false;
 				event.preventDefault();
@@ -122,7 +122,7 @@ let keyboard = function(keyCode) {
 	key.upHandler = function(event) {
 		if (key.code === event.keyCode) {
 			if (key.isDown && key.release) {
-				key.release();
+				key.release(event);
 				key.isDown = false;
 				key.isUp = true;
 				event.preventDefault();
