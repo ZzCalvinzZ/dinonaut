@@ -1,55 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
 .DS_Store
-**/.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-cocos2d/**
-bin/**
-
-**/xcuserdata/**
-**/build/**
-
-
-*/__pycache__/*
-*.pyc
-
-*.a
-*.o
-*.o.d
-*.so
-
-*.sdf
-*.opensdf
-
-*~
-*.un
-*.swp
-*.orig
-
-*.lib
-*.dll
-*.pdb
-
-**/Debug/**
-
-*ipch*
-
-*.exe
-*.apk
-*.apk.*
-
-*/bin/*
-*/obj/*
-
-*tags*
-
-raw/*
-
-Doxy*
-
-*.7z
-
-*.sqlite3
-
-*local.py
-
-node_modules/
-webpack-stats.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
