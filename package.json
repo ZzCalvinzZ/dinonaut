@@ -2,6 +2,7 @@
   "name": "dinonaut",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://ZzCalvinzZ.github.io/dinonaut",
   "dependencies": {
     "@babel/core": "7.9.0",
     "@svgr/webpack": "4.3.3",
@@ -67,7 +68,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -140,6 +143,7 @@
     ]
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^5.1.1"
+    "copy-webpack-plugin": "^5.1.1",
+    "gh-pages": "^2.2.0"
   }
 }
