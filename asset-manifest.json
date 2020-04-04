@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/dinonaut/static/css/main.79eb8662.chunk.css",
+    "main.js": "/dinonaut/static/js/main.65f6d97b.chunk.js",
+    "main.js.map": "/dinonaut/static/js/main.65f6d97b.chunk.js.map",
+    "runtime-main.js": "/dinonaut/static/js/runtime-main.0439cc07.js",
+    "runtime-main.js.map": "/dinonaut/static/js/runtime-main.0439cc07.js.map",
+    "static/js/2.7a5cde99.chunk.js": "/dinonaut/static/js/2.7a5cde99.chunk.js",
+    "static/js/2.7a5cde99.chunk.js.map": "/dinonaut/static/js/2.7a5cde99.chunk.js.map",
+    "background/background.json": "/dinonaut/background/background.json",
+    "background/background.png": "/dinonaut/background/background.png",
+    "dinonaut.png": "/dinonaut/dinonaut.png",
+    "dinonautshield/dinonautshield.json": "/dinonaut/dinonautshield/dinonautshield.json",
+    "dinonautshield/dinonautshield.png": "/dinonaut/dinonautshield/dinonautshield.png",
+    "dinonauttheme.mp3": "/dinonaut/dinonauttheme.mp3",
+    "dinonauttheme.ogg": "/dinonaut/dinonauttheme.ogg",
+    "dinonautwalking/dinonautwalking.json": "/dinonaut/dinonautwalking/dinonautwalking.json",
+    "dinonautwalking/dinonautwalking.png": "/dinonaut/dinonautwalking/dinonautwalking.png",
+    "explosion1/explosion1.json": "/dinonaut/explosion1/explosion1.json",
+    "explosion1/explosion1.png": "/dinonaut/explosion1/explosion1.png",
+    "explosionsound.mp3": "/dinonaut/explosionsound.mp3",
+    "index.html": "/dinonaut/index.html",
+    "ludumdaretrack.mp3": "/dinonaut/ludumdaretrack.mp3",
+    "meteor.png": "/dinonaut/meteor.png",
+    "meteor/meteor.json": "/dinonaut/meteor/meteor.json",
+    "meteor/meteor.png": "/dinonaut/meteor/meteor.png",
+    "planet.png": "/dinonaut/planet.png",
+    "point.mp3": "/dinonaut/point.mp3",
+    "precache-manifest.91324d9ab5b7fb41a806b4b991f4e6a3.js": "/dinonaut/precache-manifest.91324d9ab5b7fb41a806b4b991f4e6a3.js",
+    "service-worker.js": "/dinonaut/service-worker.js",
+    "shield.mp3": "/dinonaut/shield.mp3",
+    "speaker.png": "/dinonaut/speaker.png",
+    "speaker_off.png": "/dinonaut/speaker_off.png",
+    "static/css/main.79eb8662.chunk.css.map": "/dinonaut/static/css/main.79eb8662.chunk.css.map",
+    "static/js/2.7a5cde99.chunk.js.LICENSE.txt": "/dinonaut/static/js/2.7a5cde99.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0439cc07.js",
+    "static/js/2.7a5cde99.chunk.js",
+    "static/css/main.79eb8662.chunk.css",
+    "static/js/main.65f6d97b.chunk.js"
+  ]
+}
