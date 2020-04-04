@@ -31,7 +31,6 @@ export let textures = {};
 export let sounds = {};
 
 export const getTexture = (name) => {
-  console.log(textures);
   let texture = textures[name];
 
   if (texture) {

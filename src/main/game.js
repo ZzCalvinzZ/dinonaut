@@ -15,44 +15,32 @@ import GameOverScene from "./scenes/gameover";
 import BackgroundScene from "./scenes/background";
 import ForegroundScene from "./scenes/foreground";
 
-import speaker from "../img/speaker.png";
-import speaker_off from "../img/speaker_off.png";
-import dinonaut from "../img/dinonaut.png";
-import planet from "../img/planet.png";
-import meteorImg from "../img/meteor.png";
-import meteor from "../img/meteor/meteor";
-import background from "../img/background/background";
-import dinonautshield from "../img/dinonautshield/dinonautshield";
-import dinonautwalking from "../img/dinonautwalking/dinonautwalking";
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import explosion1 from "file-loader!../img/explosion1/explosion1.json";
-
-import dinonauttheme from "../sound/dinonauttheme.ogg";
-import explosionsound from "../sound/explosionsound.mp3";
-import point from "../sound/point.mp3";
-import shield from "../sound/shield.mp3";
-
-console.log('hi',explosion1);
 export default class Game {
   images = [
-    ["speaker", speaker],
-    ["speaker_off", speaker_off],
-    ["dinonaut", dinonaut],
-    ["planet", planet],
-    ["meteorImg", meteorImg],
-    ["meteor", meteor],
-    ["background", background],
-    ["dinonautshield", dinonautshield],
-    ["dinonautwalking", dinonautwalking],
-    ["explosion1", explosion1],
+    ["speaker", "speaker.png"],
+    ["speaker_off", "speaker_off.png"],
+    ["dinonaut", "dinonaut.png"],
+    ["planet", "planet.png"],
+    ["meteorImg", "meteor.png"],
+    ["meteor", "meteor/meteor.json"],
+    ["background", "background/background.json"],
+    ["dinonautshield", "dinonautshield/dinonautshield.json"],
+    ["dinonautwalking", "dinonautwalking/dinonautwalking.json"],
+    ["explosion1", "explosion1/explosion1.json"],
   ];
 
   sounds = [
     // [name, filename, loop, volume]
-    ["dinonauttheme", dinonauttheme, true, null, this.setupGame.bind(this)],
-    ["explosionsound", explosionsound],
-    ["point", point],
-    ["shield", shield, false, 1],
+    [
+      "dinonauttheme",
+      "dinonauttheme.ogg",
+      true,
+      null,
+      this.setupGame.bind(this),
+    ],
+    ["explosionsound", "explosionsound.mp3"],
+    ["point", "point.mp3"],
+    ["shield", "shield.mp3", false, 1],
   ];
 
   constructor() {
@@ -65,7 +53,7 @@ export default class Game {
     let loader = PIXI.loader;
 
     for (let [img, file] of this.images) {
-      loader.add(img, imagePath(file));
+      loader.add(img, file);
     }
 
     loader
@@ -133,15 +121,12 @@ export default class Game {
   setupGame() {
     this.setTextures();
 
-    console.log("hi");
     stage.removeChild(this.loadScreen.scene);
 
     this.foreground = new ForegroundScene();
     this.background = new BackgroundScene();
 
-    console.log("hi");
     this.menuScreen();
-    console.log("now");
 
     sounds.dinonauttheme.play();
 
