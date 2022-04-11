@@ -2,7 +2,6 @@
   "name": "dinonaut",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://ZzCalvinzZ.github.io/dinonaut",
   "dependencies": {
     "@babel/core": "7.9.0",
     "@svgr/webpack": "4.3.3",
