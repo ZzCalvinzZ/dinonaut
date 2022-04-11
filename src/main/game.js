@@ -37,6 +37,7 @@ export default class Game {
       true,
       null,
       this.setupGame.bind(this),
+      true,
     ],
     ["explosionsound", "explosionsound.mp3"],
     ["point", "point.mp3"],
@@ -68,13 +69,13 @@ export default class Game {
   }
 
   setSounds() {
-    for (let [sound, file, loop, volume, onload] of this.sounds) {
+    for (let [sound, file, loop, volume, onload, autoplay] of this.sounds) {
       sounds[sound] = new Howl({
         src: [file],
         loop: loop || false,
         volume: volume || 0.3,
-        html5: true,
-        onload: onload || function() {},
+        onload: onload || function () {},
+        autoplay: autoplay || false,
       });
     }
   }
@@ -128,7 +129,7 @@ export default class Game {
 
     this.menuScreen();
 
-    sounds.dinonauttheme.play();
+    // sounds.dinonauttheme.play();
 
     this.gameLoop();
   }
