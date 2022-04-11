@@ -48,7 +48,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/explosionsound.mp3"
   },
   {
-    "revision": "3fded9e49d2dd9c1919bd3e30449a7be",
+    "revision": "191de80cdb90e395344dad6d3e73d5af",
     "url": "/index.html"
   },
   {
@@ -88,7 +88,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/speaker_off.png"
   },
   {
-    "revision": "77aab9240c6bb06a9a15",
+    "revision": "d70cf71b756412f2f4eb",
     "url": "/static/css/main.79eb8662.chunk.css"
   },
   {
@@ -100,8 +100,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/2.7a5cde99.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "77aab9240c6bb06a9a15",
-    "url": "/static/js/main.8a36eef4.chunk.js"
+    "revision": "d70cf71b756412f2f4eb",
+    "url": "/static/js/main.7efd2d3c.chunk.js"
   },
   {
     "revision": "a5d4176fbf2793c16129",

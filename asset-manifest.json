@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.79eb8662.chunk.css",
-    "main.js": "/static/js/main.8a36eef4.chunk.js",
-    "main.js.map": "/static/js/main.8a36eef4.chunk.js.map",
+    "main.js": "/static/js/main.7efd2d3c.chunk.js",
+    "main.js.map": "/static/js/main.7efd2d3c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.193a09af.js",
     "runtime-main.js.map": "/static/js/runtime-main.193a09af.js.map",
     "static/js/2.7a5cde99.chunk.js": "/static/js/2.7a5cde99.chunk.js",
@@ -26,7 +26,7 @@
     "meteor/meteor.png": "/meteor/meteor.png",
     "planet.png": "/planet.png",
     "point.mp3": "/point.mp3",
-    "precache-manifest.60a89d09010748f6ede015bc4b3f118b.js": "/precache-manifest.60a89d09010748f6ede015bc4b3f118b.js",
+    "precache-manifest.f2950eae1018ecd9a8e7d3799c991843.js": "/precache-manifest.f2950eae1018ecd9a8e7d3799c991843.js",
     "service-worker.js": "/service-worker.js",
     "shield.mp3": "/shield.mp3",
     "speaker.png": "/speaker.png",
@@ -38,6 +38,6 @@
     "static/js/runtime-main.193a09af.js",
     "static/js/2.7a5cde99.chunk.js",
     "static/css/main.79eb8662.chunk.css",
-    "static/js/main.8a36eef4.chunk.js"
+    "static/js/main.7efd2d3c.chunk.js"
   ]
 }
